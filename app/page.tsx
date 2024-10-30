@@ -1,95 +1,67 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import Navbar from "@/components/template/Navbar";
+import { Box } from "@mui/material";
+import OffersNav from "@/components/template/OffersNav";
+import MainSwiper from "@/components/template/Home/MainSwiper";
+import MainCategories from "@/components/template/Home/MainCategories";
+import DiscountBox from "@/components/template/Home/DiscountProducts";
+import CategoriesGridFeed from "@/components/template/Home/CategoriesGridFeed";
+import PageDividerWithContent from "@/components/atoms/Home/PageDividerWithContent";
+import { vazirmatn } from "./Fonts";
+import VideoDoorPhoneProducts from "@/components/template/Home/VideoDoorPhoneProducts";
+import ChosenBrands from "@/components/template/Home/ChosenBrands";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <>
+      <Navbar />
+      <Box mt="69px">
+        <Box>
+          {/* offers navbar */}
+          <Box>
+            <OffersNav />
+          </Box>
+          {/* main swiper */}
+          <Box mt="5px" sx={{ "@media (max-width: 800px)": { mt: "0" } }}>
+            <MainSwiper />
+          </Box>
+          {/* main categories */}
+          <Box mt="40px">
+            <MainCategories />
+          </Box>
+          {/* discount box */}
+          <Box mt="40px">
+            <DiscountBox />
+          </Box>
+          {/* categories grid */}
+          <Box mt="65px">
+            <CategoriesGridFeed />
+          </Box>
+          {/* video door phone */}
+          <Box mt="40px">
+            <PageDividerWithContent
+              content={
+                <Box
+                  fontSize="14px"
+                  fontFamily={vazirmatn.style.fontFamily}
+                  fontWeight={600}
+                  color="#212121"
+                >
+                  آیفون های تصویری
+                </Box>
+              }
             />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          </Box>
+          {/* video door phone products */}
+          <Box mt="40px">
+            <VideoDoorPhoneProducts />
+          </Box>
+          {/* chosen brands */}
+          <Box mt="20px">
+            <ChosenBrands />
+          </Box>
+        </Box>
+      </Box>
+    </>
   );
 }

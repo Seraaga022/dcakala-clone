@@ -1,0 +1,470 @@
+[
+  {
+    "name": "آیفون تصویری",
+    "slug": "video-door-phone",
+    "icon": "/images/categoryDropDown/right/video-door-phone.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          {
+            "name": "همه مدل های ایرانی",
+            "slug": "video-door-phone/video-door-phone"
+          },
+          { "name": "تابا الکترونیک", "slug": "video-door-phone/taba" },
+          { "name": "سیماران", "slug": "video-door-phone/simaran" },
+          {
+            "name": "الکتروپیک",
+            "slug": "video-door-phone/electropeyk"
+          },
+          { "name": "سوزوکی", "slug": "video-door-phone/suzuki" },
+          { "name": "کالیوز", "slug": "video-door-phone/calluse" },
+          { "name": "تکنما", "slug": "video-door-phone/taknama" },
+          {
+            "name": "تابان الکترونیک",
+            "slug": "video-door-phone/taban-electronic"
+          },
+          { "name": "نماوا", "slug": "video-door-phone/namava" },
+          {
+            "name": "سیماران IP",
+            "slug": "video-door-phone/simaran-ip"
+          },
+          { "name": "فونیکس", "slug": "video-door-phone/phonix" },
+          {
+            "name": "تامر الکترونیک",
+            "slug": "video-door-phone/tamer"
+          },
+          {
+            "name": "اف اف تکنولوژی",
+            "slug": "video-door-phone/ff-technology"
+          },
+          { "name": "آلدو", "slug": "video-door-phone/aldo" },
+          { "name": "فربیکو", "slug": "video-door-phone/ferbico" },
+          {
+            "name": "سیلور IP",
+            "slug": "video-door-phone/vdp-ip-silver"
+          }
+        ]
+      },
+      {
+        "title": "خارجی",
+        "children": [
+          {
+            "name": "همه مدل های خارجی",
+            "slug": "video-door-phone/foreign-manufactured"
+          },
+          {
+            "name": "کوماکس Commax (کره ای)",
+            "slug": "video-door-phone/commax"
+          },
+          {
+            "name": "کوماکس Commax (چینی)",
+            "slug": "video-door-phone/chinese-commax"
+          },
+          { "name": "کامکث Camax", "slug": "video-door-phone/camax" },
+          { "name": "فرمکث Fermax", "slug": "video-door-phone/fermax" },
+          { "name": "هیوندای Hyundai", "slug": "video-door-phone/hyundai" },
+          { "name": "کوکوم Kocom", "slug": "video-door-phone/kocom" },
+          {
+            "name": "پاناسونیک Panasonic",
+            "slug": "video-door-phone/panasonic"
+          },
+          { "name": "سامسونگ Samsung", "slug": "video-door-phone/samsung" },
+          { "name": "ویدکس Videx", "slug": "video-door-phone/videx" },
+          { "name": "مولتی تک Multitek", "slug": "video-door-phone/multitek" },
+          { "name": "کیووس بی سیم Kivos", "slug": "video-door-phone/kivos" },
+          {
+            "name": "موبی تک Mobi Tech",
+            "slug": "video-door-phone/mobitech-video-door-phone"
+          },
+          { "name": "FEC هوشمند", "slug": "video-door-phone/fec-smart" }
+        ]
+      },
+      {
+        "title": "پک آیفون بر اساس واحد",
+        "children": [
+          { "name": "پک آیفون تصویری", "slug": "video-door-phone" },
+          { "name": "پک 1 واحدی", "slug": "video-door-phone" },
+          { "name": "پک 2 واحدی", "slug": "video-door-phone" },
+          { "name": "پک 3 واحدی", "slug": "video-door-phone" },
+          { "name": "پک 4 واحدی", "slug": "video-door-phone" },
+          { "name": "آیفون تصویری WiFi", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "پک آیفون بر اساس برند",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "سایر دسته بندی ها",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "لیست قیمت",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" },
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "جک درب پارکینگ",
+    "slug": "automatic-gate",
+    "icon": "/images/categoryDropDown/left/automatic-gate.webp",
+    "subCategories": [
+      {
+        "title": "خارجی",
+        "children": [
+          {
+            "name": "همه محصولات خارجی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات خارجی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات خارجی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات خارجی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات خارجی",
+            "slug": "video-door-phone"
+          }
+        ]
+      },
+      {
+        "title": "پک آیفون بر اساس واحد",
+        "children": [
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone"
+          },
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "دوربین مدار بسته",
+    "slug": "cctv",
+    "icon": "/images/categoryDropDown/right/cctv.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "کرکره برقی اتوماتیک",
+    "slug": "rolling-shutters",
+    "icon": "/images/categoryDropDown/left/rolling-shutters.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "پکیج ها",
+        "allRelativeProductsSlug": "rolling-shutters/rolling-shutter-packs",
+        "children": [
+          {
+            "name": "همه محصولات ایرانی",
+            "slug": "video-door-phone",
+            "imageSrc": "/images/categoryDropDown/pool-cover-electric-shutterpool-cover-electric-shutter_samll.jpg"
+          },
+          {
+            "name": "همه محصولات ایرانی همه محصولات ایرانی",
+            "slug": "video-door-phone",
+            "imageSrc": "/images/categoryDropDown/pool-cover-electric-shutterpool-cover-electric-shutter_samll.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "دزدگیر اماکن",
+    "slug": "alarm-systems",
+    "icon": "/images/categoryDropDown/right/alarm-systems.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "راهبند اتوماتیک",
+    "slug": "barrier",
+    "icon": "/images/categoryDropDown/left/barrier.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "بنر",
+        "children": [
+          {
+            "name": "banner",
+            "slug": "",
+            "bannerImageSrc": "/images/categoryDropDown/rahband-02.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "درب اتوماتیک شیشه ای",
+    "slug": "automatic-glass-doors",
+    "icon": "/images/categoryDropDown/right/automatic-glass-doors.webp",
+    "subCategories": []
+  },
+  {
+    "name": "قفل برقی",
+    "slug": "electric-lock",
+    "icon": "/images/categoryDropDown/left/electric-lock.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "سیستم اعلام حریق",
+    "slug": "fire-alarm",
+    "icon": "/images/categoryDropDown/right/fire-alarm.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "خانه هوشمند",
+    "slug": "smart-home",
+    "icon": "/images/categoryDropDown/left/smart-home.webp",
+    "subCategories": []
+  },
+  {
+    "name": "ریموت و رسیور",
+    "slug": "remote",
+    "icon": "/images/categoryDropDown/right/remote.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "تجهیزات آنتن مرکزی",
+    "slug": "central-antenna",
+    "icon": "/images/categoryDropDown/left/central-antenna.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "آرام بند در",
+    "slug": "door-closer",
+    "icon": "/images/categoryDropDown/right/door-closer.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "دستگیره هوشمند",
+    "slug": "digital-lock",
+    "icon": "/images/categoryDropDown/left/digital-lock.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      },
+      {
+        "title": "بنر",
+        "children": [
+          {
+            "name": "banner",
+            "slug": "",
+            "bannerImageSrc": "/images/categoryDropDown/digital-lock.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "چشمی درب دیجیتال",
+    "slug": "digital-door-viewer",
+    "icon": "/images/categoryDropDown/right/digital-door-viewer.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "مانیتور صنعتی",
+    "slug": "industrial-monitor",
+    "icon": "/images/categoryDropDown/left/industrial-monitor.webp",
+    "subCategories": []
+  },
+  {
+    "name": "یو پی اس UPS",
+    "slug": "ups",
+    "icon": "/images/categoryDropDown/right/ups.webp",
+    "subCategories": []
+  },
+  {
+    "name": "آیفون صوتی و سیستم ارتباط داخلی",
+    "slug": "intercome",
+    "icon": "/images/categoryDropDown/left/intercome.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "پارکبند (قفل پارکینگ)",
+    "slug": "car-parking-lock",
+    "icon": "/images/categoryDropDown/right/car-parking-lock.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "گیت فروشگاهی",
+    "slug": "store-alarm-system",
+    "icon": "/images/categoryDropDown/left/store-alarm-system.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "سایبان برقی",
+    "slug": "electric-awning",
+    "icon": "/images/categoryDropDown/right/electric-awning.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "دوربین ثبت وقایع خودرو",
+    "slug": "dash-cams",
+    "icon": "/images/categoryDropDown/left/dash-cams.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "سیستم تردد هوشمند",
+    "slug": "access-control-systems",
+    "icon": "/images/categoryDropDown/right/access-control-systems.webp",
+    "subCategories": [
+      {
+        "title": "ایرانی",
+        "children": [
+          { "name": "همه محصولات ایرانی", "slug": "video-door-phone" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "لوازم برقی سیماران",
+    "slug": "simaran-electrical-devices",
+    "icon": "/images/categoryDropDown/left/simaran-electrical-devices.webp",
+    "subCategories": []
+  }
+]
