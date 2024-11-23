@@ -1,7 +1,7 @@
 "use client";
 import { vazirmatn } from "@/app/Fonts";
 import useTimer from "@/hooks/useTimer";
-import { TProductCard } from "@/utils/types/TProductCard";
+import { ProductCardLayoutT, TProduct } from "@/utils/types/Product";
 import { Box, BoxProps, Stack, Typography } from "@mui/material";
 import React, {
   PropsWithChildren,
@@ -13,11 +13,15 @@ import Image from "next/image";
 import {
   AccessTimeFilled,
   LocalOffer,
+  LocalPhoneRounded,
   RocketLaunch,
 } from "@mui/icons-material";
 import Link from "next/link";
+import getUniqueKey from "@/utils/lib/UniqueKey";
 
-const productContext = createContext<TProductCard | undefined>(undefined);
+const productContext = createContext<
+  { product: TProduct; layout: ProductCardLayoutT } | undefined
+>(undefined);
 const useProductCardContext = () => {
   const context = useContext(productContext);
   if (!context)
@@ -29,11 +33,15 @@ const useProductCardContext = () => {
 
 export default function ProductCard({
   product,
+  layout = "grid",
   children,
   ...props
-}: { product: TProductCard } & PropsWithChildren & BoxProps) {
+}: { product: TProduct } & {
+  layout?: ProductCardLayoutT;
+} & PropsWithChildren &
+  BoxProps) {
   return (
-    <productContext.Provider value={product}>
+    <productContext.Provider value={{ product, layout }}>
       <Box
         className="productCard-wrapper"
         bgcolor="#fff"
@@ -42,25 +50,30 @@ export default function ProductCard({
         boxSizing="border-box"
         position="relative"
         p="15px"
+        overflow="visible"
         sx={{
           "&:hover": {
             boxShadow:
               "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
           },
-          transition: "all ease-in 100ms",
+          transition: "all ease-in 80ms",
         }}
         {...props}
       >
         <Link href={product.slug}>
-          <Stack>{children}</Stack>
+          <Stack direction={layout === "grid" ? "column" : "row"}>
+            {children}
+          </Stack>
         </Link>
       </Box>
     </productContext.Provider>
   );
 }
 
-const TimerAndSpecialOffer = (props: BoxProps) => {
-  const { discountTime, specialOffer, isNew, slug } = useProductCardContext();
+const TopDetails = (props: BoxProps) => {
+  const {
+    product: { discountTime, specialOffer, isNew, slug },
+  } = useProductCardContext();
   const timerVal = (discountTime || 0) * 3600;
   const { hour, minute, second } = useTimer(timerVal, `${slug}-Product`);
   return (
@@ -142,17 +155,13 @@ const TimerAndSpecialOffer = (props: BoxProps) => {
           </Box>
         ) : isNew ? (
           <Box
-            className="productCard-timer-newProduct_container"
+            className="productCard-timer-newProduct_wrapper"
             fontFamily={vazirmatn.style.fontFamily}
-            color="#ef4444"
-            fontSize="15px"
+            color="#de1616"
+            fontSize="16px"
           >
-            <Box
-              className="productCard-timer-newProduct_wrapper"
-              display="flex"
-              color="red"
-            >
-              <Box className="productCard-timer-newProduct-text">جدید</Box>
+            <Box className="productCard-timer-newProduct-text" pr="10px">
+              جدید
             </Box>
           </Box>
         ) : (
@@ -181,18 +190,39 @@ const TimerAndSpecialOffer = (props: BoxProps) => {
   );
 };
 const ImageAndVideo = (props: BoxProps) => {
-  const { image, discountTime, isNew, specialOffer, title, video } =
-    useProductCardContext();
+  const {
+    product: { image, discountTime, isNew, specialOffer, title, video },
+  } = useProductCardContext();
   const [videoIsVisible, setVideoVisible] = useState(false);
   return (
     <Box
-      mt={discountTime || isNew || specialOffer ? "30px" : "8px"}
+      mt={discountTime || isNew || specialOffer ? "25px" : "8px"}
       className="productCard-image_wrapper"
       display="flex"
       justifyContent="center"
       alignItems="center"
       onMouseEnter={() => setVideoVisible(true)}
       onMouseLeave={() => setVideoVisible(false)}
+      sx={{
+        "@media (max-width: 1250px)": {
+          "& .productCard-image, & .productCard-video": {
+            width: 170,
+            height: 170,
+          },
+        },
+        "@media (max-width: 650px)": {
+          "& .productCard-image, & .productCard-video": {
+            width: 200,
+            height: 200,
+          },
+        },
+        "@media (max-width: 620px)": {
+          "& .productCard-image, & .productCard-video": {
+            width: 130,
+            height: 130,
+          },
+        },
+      }}
       {...props}
     >
       {video && videoIsVisible ? (
@@ -223,7 +253,9 @@ const ImageAndVideo = (props: BoxProps) => {
   );
 };
 const Colors = (props: BoxProps) => {
-  const { colors, slug } = useProductCardContext();
+  const {
+    product: { colors },
+  } = useProductCardContext();
   return (
     <Box className="productCard-colors_container" mt="5px" {...props}>
       {colors ? (
@@ -241,18 +273,20 @@ const Colors = (props: BoxProps) => {
               height={17}
               borderRadius="3px"
               border="1px solid #e5e7eb"
-              key={color.concat(slug.concat(Math.random().toString()))}
+              key={getUniqueKey()}
             />
           ))}
         </Box>
       ) : (
-        <Box className="productCard-colors-placeholder" minHeight="5px" />
+        <Box className="productCard-colors-placeholder" />
       )}
     </Box>
   );
 };
 const FastExpress = (props: BoxProps) => {
-  const { fastExpress } = useProductCardContext();
+  const {
+    product: { fastExpress },
+  } = useProductCardContext();
   return (
     <Box
       className="productCard-fastExpress_container"
@@ -291,18 +325,25 @@ const FastExpress = (props: BoxProps) => {
           </Box>
         </Box>
       ) : (
-        <Box minHeight="5px" className="productCard-fastExpress-placeholder" />
+        <Box className="productCard-fastExpress-placeholder" />
       )}
     </Box>
   );
 };
 const Title = (props: BoxProps) => {
-  const { title } = useProductCardContext();
+  const {
+    product: { title },
+    layout,
+  } = useProductCardContext();
   return (
-    <Box className="productCard-title_container" minHeight="45px" {...props}>
-      <Box className="productCard-title_wrapper" pr="10px" pl="15px">
+    <Box
+      className="productCard-title_container"
+      minHeight={layout === "grid" ? { xs: "10px", md: "45px" } : "10px"}
+      {...props}
+    >
+      <Box className="productCard-title_wrapper" pr="10px">
         <Typography
-          fontSize={{ xs: "15px", md: "13px", lg: "14px" }}
+          fontSize={{ xs: "10px", md: "12px", lg: "13.5px" }}
           fontFamily={vazirmatn.style.fontFamily}
           fontWeight={vazirmatn.style.fontWeight}
           className="productCard-title"
@@ -314,21 +355,45 @@ const Title = (props: BoxProps) => {
   );
 };
 const PriceAndDiscount = (props: BoxProps) => {
-  const { price, discountNumber } = useProductCardContext();
+  const {
+    product: { price, discountNumber },
+    layout,
+  } = useProductCardContext();
+
   return (
     <Box
       className="productCard-price_container"
-      position="absolute"
+      position={layout === "grid" ? "absolute" : "unset"}
+      minHeight="60px"
       bottom={10}
       right={0}
       boxSizing="border-box"
       display="flex"
       alignItems="center"
       width="100%"
+      sx={{
+        "@media (max-width: 500px)": {
+          "& .productCard-price-price-number": {
+            fontSize: "12px",
+          },
+          "& .productCard-price-price-extension": {
+            fontSize: "10px",
+          },
+          "& .productCard-price-discountedPrice-number": {
+            fontSize: "10px",
+          },
+          "& .productCard-price-discountedPrice-extension": {
+            fontSize: "10px",
+          },
+          "& .productCard-price-discountNumber": {
+            fontSize: "9px",
+          },
+        },
+      }}
       {...props}
     >
       <Box
-        className="productCard-price-discountedNumber_wrapper"
+        className="productCard-price-discount_wrapper"
         display="flex"
         justifyContent="end"
         width="100%"
@@ -337,94 +402,133 @@ const PriceAndDiscount = (props: BoxProps) => {
         px="15px"
         boxSizing="border-box"
       >
-        <Box
-          flex={1}
-          mr="auto"
-          display="flex"
-          flexDirection="column"
-          fontFamily={vazirmatn.style.fontFamily}
-          fontSize="16px"
-          className="productCard-price_wrapper"
-        >
-          <Box
-            className="productCard-price-price"
-            display="flex"
-            dir="rtl"
-            justifyContent="end"
-            alignItems="center"
-            mb={discountNumber ? 0 : "12px"}
-            color={discountNumber ? "#de1616" : "#121212"}
-          >
-            {/* number */}
-            <Typography fontFamily={vazirmatn.style.fontFamily} fontSize="16px">
-              {price.toLocaleString()}&nbsp;
-            </Typography>
-            {/* تومان */}
-            <Typography
-              fontSize="12px"
-              fontWeight={400}
-              fontFamily={vazirmatn.style.fontFamily}
-            >
-              تومان
-            </Typography>
-          </Box>
-          {discountNumber && (
+        {price ? (
+          <>
+            {/* price */}
             <Box
-              className="productCard-price-discountedPrice"
+              flex={1}
+              mr="auto"
               display="flex"
-              dir="rtl"
-              justifyContent="end"
-              alignItems="center"
+              flexDirection="column"
+              fontFamily={vazirmatn.style.fontFamily}
+              fontSize="16px"
+              className="productCard-price_wrapper"
             >
-              {/* number */}
-              <Typography
-                component="del"
-                fontSize="14px"
-                fontFamily={vazirmatn.style.fontFamily}
-                color="#c4c3c3"
+              <Box
+                className="productCard-price-price"
+                display="flex"
+                dir="rtl"
+                justifyContent="end"
+                alignItems="center"
+                mb={discountNumber ? 0 : "12px"}
+                color={discountNumber ? "#de1616" : "#121212"}
               >
-                {(price - price / discountNumber).toLocaleString()}
-              </Typography>
-              &nbsp;
-              {/* تومان */}
-              <Typography
-                component="del"
-                fontSize="12px"
-                fontWeight={400}
-                fontFamily={vazirmatn.style.fontFamily}
-                color="#c4c3c3"
-              >
-                تومان
-              </Typography>
+                {/* number */}
+                <Typography
+                  className="productCard-price-price-number"
+                  fontFamily={vazirmatn.style.fontFamily}
+                  fontWeight={500}
+                  fontSize="16px"
+                >
+                  {price.toLocaleString()}&nbsp;
+                </Typography>
+                {/* تومان */}
+                <Typography
+                  className="productCard-price-price-extension"
+                  fontFamily={vazirmatn.style.fontFamily}
+                  fontSize="12px"
+                  fontWeight={400}
+                >
+                  تومان
+                </Typography>
+              </Box>
+              {discountNumber && (
+                <Box
+                  className="productCard-price-discountedPrice"
+                  display="flex"
+                  dir="rtl"
+                  justifyContent="end"
+                >
+                  {/* number */}
+                  <Typography
+                    className="productCard-price-discountedPrice-number"
+                    component="del"
+                    fontSize="14px"
+                    fontFamily={vazirmatn.style.fontFamily}
+                    color="#c4c3c3"
+                  >
+                    {(price / discountNumber - price).toLocaleString()}
+                  </Typography>
+                  &nbsp;
+                  {/* تومان */}
+                  <Typography
+                    className="productCard-price-discountedPrice-extension"
+                    component="del"
+                    fontSize="12px"
+                    fontWeight={400}
+                    fontFamily={vazirmatn.style.fontFamily}
+                    color="#c4c3c3"
+                  >
+                    تومان
+                  </Typography>
+                </Box>
+              )}
             </Box>
-          )}
-        </Box>
-        {/* discount number tag */}
-        <Box flex={0.15} className="productCard-price-discountNumber_wrapper">
-          {discountNumber && (
+            {/* discount number tag */}
             <Box
-              className="productCard-price-discountNumber"
+              flex={0.15}
+              className="productCard-price-discountNumber_wrapper"
+            >
+              {discountNumber && (
+                <Box
+                  className="productCard-price-discountNumber"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="end"
+                  width="fit-content"
+                  px="5px"
+                  pt="1px"
+                  fontFamily={vazirmatn.style.fontFamily}
+                  fontSize="12px"
+                  color="#fff"
+                  bgcolor="#de1616"
+                  borderRadius="5px"
+                >
+                  %&nbsp;{discountNumber}
+                </Box>
+              )}
+            </Box>
+          </>
+        ) : (
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-between"
+            color="#009688"
+            fontFamily={vazirmatn.style.fontFamily}
+          >
+            {/* icon */}
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <LocalPhoneRounded />
+            </Box>
+            {/* text */}
+            <Box
               display="flex"
               justifyContent="center"
               alignItems="center"
-              width="fit-content"
-              px="5px"
-              fontFamily={vazirmatn.style.fontFamily}
-              fontSize="12px"
-              color="#fff"
-              bgcolor="#de1616"
-              borderRadius="5px"
+              fontSize="15px"
+              fontWeight={700}
             >
-              %&nbsp;{discountNumber}
+              تماس بگیرید
             </Box>
-          )}
-        </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );
 };
 
-ProductCard.Timer = TimerAndSpecialOffer;
+ProductCard.TopDetails = TopDetails;
 ProductCard.Image = ImageAndVideo;
 ProductCard.Colors = Colors;
 ProductCard.FastExpress = FastExpress;

@@ -1,5 +1,9 @@
 "use client";
 import { vazirmatn } from "@/app/Fonts";
+import useCategories from "@/hooks/useCategories";
+import useCreators from "@/hooks/useCreators";
+import useProducts from "@/hooks/useProducts";
+import { TProduct } from "@/utils/types/Product";
 import { ArrowBackIosNew, Clear, Search } from "@mui/icons-material";
 import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
@@ -17,10 +21,6 @@ const NavSearchMagnifingGlassIcon = dynamic(
     ),
   }
 );
-
-export type TProduct = { name: string; image: string; slug: string };
-export type TCategory = { name: string; slug: string };
-type TCreator = { name: string; slug: string };
 
 const NoGoods = () => {
   return (
@@ -60,7 +60,7 @@ const NavSearchProductCard = ({ product }: { product: TProduct }) => {
           <Box display="flex" alignItems="center">
             <Image
               src={product.image}
-              alt={product.name}
+              alt={product.title}
               width={100}
               height={100}
             />
@@ -71,7 +71,7 @@ const NavSearchProductCard = ({ product }: { product: TProduct }) => {
             fontSize="14px"
             color="#212121"
           >
-            {product.name}
+            {product.title}
           </Box>
         </Box>
       </Link>
@@ -79,70 +79,31 @@ const NavSearchProductCard = ({ product }: { product: TProduct }) => {
   );
 };
 
-export const useProducts: {
-  data: undefined | TProduct[];
-  isLoading: boolean | undefined;
-  error: Error | undefined;
-} = {
-  data: [
-    {
-      name: "ریموت جک پارکینگی ایور- Remote Ivor",
-      image:
-        "https://dashboard.dcakala.com/public/images/product/remote-ivor/2024/08/remote-ivor_medium_2x.webp",
-      slug: "automatic-gate/ivor/remote-ivor.html",
-    },
-  ],
-  isLoading: false,
-  error: undefined,
-};
-
 const NavSearch = () => {
   const [inputValue, setInputValue] = React.useState("");
-
-  const useCategories: {
-    data: undefined | TCategory[];
-    isLoading: boolean | undefined;
-    error: Error | undefined;
-  } = {
-    data: [
-      { name: "درب اتوماتیک ایور Ivor", slug: "automatic-gate/ivor" },
-      { name: "جک درب پارکینگ", slug: "automatic-gate" },
-    ],
-    isLoading: false,
-    error: undefined,
-  };
-  const useCreators: {
-    data: undefined | TCreator[];
-    isLoading: boolean | undefined;
-    error: Error | undefined;
-  } = {
-    data: [{ name: "ایور - IVOR", slug: "ivor" }],
-    isLoading: false,
-    error: undefined,
-  };
 
   const {
     data: products,
     isLoading: productsLoading,
     error: productsError,
-  } = useProducts;
+  } = useProducts();
   const {
     data: categories,
     isLoading: categoriesLoading,
     error: categoriesError,
-  } = useCategories;
+  } = useCategories();
   const {
     data: creators,
     isLoading: creatorsLoading,
     error: creatorsError,
-  } = useCreators;
+  } = useCreators();
 
   return (
     <Box
       bgcolor="#fff"
       height="100%"
       sx={{
-        width: "64%",
+        width: "70%",
         "@media (min-width: 1250px)": {
           width: "100%",
         },
@@ -160,7 +121,10 @@ const NavSearch = () => {
         {/* icons */}
         <Box
           width="6%"
-          sx={{ "@media (max-width: 1250px)": { width: "20%" } }}
+          sx={{
+            "@media (max-width: 1250px)": { width: "13%" },
+            "@media (max-width: 900px)": { width: "20%" },
+          }}
           height="100%"
           display="flex"
           pl="8px"
@@ -187,7 +151,7 @@ const NavSearch = () => {
           height="99%"
           pr="10px"
           sx={{
-            "& > input::placeholder": { textAlign: "center" },
+            "& > input::placeholder": { textAlign: "center", color: "#9ca3af" },
             "@media (max-width: 1250px)": { width: "80%" },
           }}
         >
@@ -345,7 +309,9 @@ const NavSearch = () => {
                       </Box>
                     ) : categoriesError ? (
                       <Box fontFamily={vazirmatn.style.fontFamily}>
-                        {categoriesError.message}
+                        {/* becaus we are doing it with hard way, i have not access to message propertie */}
+                        {/* {categoriesError.message} */}
+                        {categoriesError}
                       </Box>
                     ) : (
                       <Stack spacing={1.4}>
@@ -484,7 +450,9 @@ const NavSearch = () => {
                       </Box>
                     ) : creatorsError ? (
                       <Box fontFamily={vazirmatn.style.fontFamily}>
-                        {creatorsError.message}
+                        {/* becaus we are doing it with hard way, i have not access to message propertie */}
+                        {/* {creatorsError.message} */}
+                        {creatorsError}
                       </Box>
                     ) : (
                       <Stack spacing={1.4}>
@@ -676,9 +644,7 @@ const NavSearch = () => {
                       />
                     </Box>
                   ) : productsError ? (
-                    <Box className={vazirmatn.className}>
-                      {productsError.message}
-                    </Box>
+                    <Box className={vazirmatn.className}>{productsError}</Box>
                   ) : (
                     products.map((product) => (
                       <NavSearchProductCard

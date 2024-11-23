@@ -1,29 +1,47 @@
 "use server";
-import { Box, Container, Divider, Stack } from "@mui/material";
+import { vazirmatn } from "@/app/Fonts";
+import { Box, BoxProps, Container, Divider } from "@mui/material";
 import React from "react";
 
-const PageDividerWithContent = ({ content }: { content: React.ReactNode }) => {
+const PageDivider = ({
+  children,
+  ...props
+}: {
+  children?: React.ReactNode;
+} & BoxProps) => {
   return (
-    <Box flex={1}>
+    <Box flex={1} {...props}>
       <Container
         maxWidth="lg"
-        sx={{
-          "&.MuiContainer-maxWidthLg": {
-            maxWidth: "1380px",
-          },
-        }}
+        sx={{ "&.MuiContainer-maxWidthLg": { maxWidth: "1380px" } }}
+        disableGutters
       >
         <Divider
+          className="divider-body"
           sx={{
-            "&::before": { borderColor: "#212121" },
-            "&::after": { borderColor: "#212121" },
+            "&::before": { borderColor: "#212121", borderWidth: "2px" },
+            "&::after": { borderColor: "#212121", borderWidth: "2px" },
           }}
+          variant="middle"
         >
-          {content}
+          {children}
         </Divider>
       </Container>
     </Box>
   );
 };
 
-export default PageDividerWithContent;
+const DividerContent = ({ content }: { content: string }) => {
+  return (
+    <Box
+      fontSize="14px"
+      fontFamily={vazirmatn.style.fontFamily}
+      fontWeight={600}
+      color="#212121"
+    >
+      {content}
+    </Box>
+  );
+};
+PageDivider.DividerContent = DividerContent;
+export default PageDivider;

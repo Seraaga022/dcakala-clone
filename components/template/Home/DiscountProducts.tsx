@@ -2,17 +2,17 @@
 import { vazirmatn } from "@/app/Fonts";
 import { Box, Container, ThemeProvider } from "@mui/material";
 import React from "react";
-import DiscountBoxCustomBreakPoint from "@/theme/DiscountBoxCustomBreakPoint";
+import DiscountBoxCustomBreakPoint from "@/theme/CustomBreakPoint";
 import useTimer from "@/hooks/useTimer";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import discountedProductsData from "@/assets/data/discountedProducts.json";
-import { TProductCard } from "@/utils/types/TProductCard";
+import { TProduct } from "@/utils/types/Product";
 import ProductCard from "@/components/molecules/ProductCard";
 
 const DiscountBox = () => {
   const remainingDiscountTime = useTimer();
-  const discountedProducts: TProductCard[] = discountedProductsData;
+  const discountedProducts: TProduct[] = discountedProductsData;
 
   return (
     <Box>
@@ -28,33 +28,33 @@ const DiscountBox = () => {
         <ThemeProvider theme={DiscountBoxCustomBreakPoint}>
           <Box
             display="flex"
-            flexDirection={{ xs: "column", mdMobile: "row" }}
+            flexDirection={{ xs: "column", mobile: "row" }}
             height={{
               xs: "480px",
-              mdMobile: "390px",
+              mobile: "390px",
               md: "380px",
               lg: "410px",
             }}
             overflow="hidden"
             pt="6px"
-            px={{ xs: 0, mdMobile: "15px" }}
+            px={{ xs: 0, mobile: "15px" }}
             pb="27px"
           >
             {/* swiper */}
-            <Box flex={1} order={{ xs: 2, mdMobile: 1 }} position="relative">
+            <Box flex={1} order={{ xs: 2, mobile: 1 }} position="relative">
               <Box
                 position="relative"
-                height={{ xs: "100%", mdMobile: "95%" }}
+                height={{ xs: "100%", mobile: "95%" }}
                 sx={{
                   borderRight: "none",
                   borderWidth: "10px",
                   borderColor: "#ffa500",
-                  borderBlockStyle: { xs: "none", mdMobile: "solid" },
-                  borderLeftStyle: { xs: "none", mdMobile: "solid" },
-                  borderRadius: { xs: "0", mdMobile: "15px" },
+                  borderBlockStyle: { xs: "none", mobile: "solid" },
+                  borderLeftStyle: { xs: "none", mobile: "solid" },
+                  borderRadius: { xs: "0", mobile: "15px" },
                 }}
-                py={{ xs: 0, mdMobile: "10px" }}
-                pl={{ xs: 0, mdMobile: "10px" }}
+                py={{ xs: 0, mobile: "10px" }}
+                pl={{ xs: 0, mobile: "10px" }}
                 pr="none"
               >
                 {/* swiper */}
@@ -63,10 +63,10 @@ const DiscountBox = () => {
                   width="100%"
                   position="relative"
                   bgcolor="#ffa500"
-                  px={{ xs: "5px", mdMobile: "20px" }}
+                  px={{ xs: "5px", mobile: "20px" }}
                   py="20px"
                   boxSizing="border-box"
-                  borderRadius={{ xs: 0, mdMobile: "5px" }}
+                  borderRadius={{ xs: 0, mobile: "5px" }}
                   overflow="hidden"
                 >
                   <Box
@@ -86,7 +86,7 @@ const DiscountBox = () => {
                       disableGutters
                       sx={{
                         height: "100%",
-                        maxWidth: { mdMobile: "500px" },
+                        maxWidth: { mobile: "500px" },
                         "@media (min-width: 830px)": {
                           maxWidth: "550px",
                         },
@@ -139,6 +139,7 @@ const DiscountBox = () => {
                         spaceBetween={20}
                         style={{
                           height: "100%",
+                          overflowY: "visible",
                         }}
                       >
                         {discountedProducts.map((product) => (
@@ -146,23 +147,8 @@ const DiscountBox = () => {
                             key={product.id.toString().concat(product.image)}
                           >
                             <ProductCard product={product} minHeight="100%">
-                              <ProductCard.Timer />
-                              <ProductCard.Image
-                                sx={{
-                                  "@media (max-width: 1250px)": {
-                                    "& .productCard-image": {
-                                      width: 170,
-                                      height: 170,
-                                    },
-                                  },
-                                  "@media (max-width: 640px)": {
-                                    "& .productCard-image": {
-                                      width: 200,
-                                      height: 200,
-                                    },
-                                  },
-                                }}
-                              />
+                              <ProductCard.TopDetails />
+                              <ProductCard.Image />
                               <ProductCard.Colors />
                               <ProductCard.FastExpress />
                               <ProductCard.Title />
@@ -181,19 +167,19 @@ const DiscountBox = () => {
                 <Box
                   position="absolute"
                   width="103%"
-                  height={{ xs: "104.6%", mdMobile: "104%" }}
-                  top={{ xs: -19, mdMobile: -17 }}
-                  right={{ xs: 0, mdMobile: -20 }}
+                  height={{ xs: "104.6%", mobile: "104%" }}
+                  top={{ xs: -19, mobile: -17 }}
+                  right={{ xs: 0, mobile: -20 }}
                   bottom={-10}
-                  left={{ xs: -15, mdMobile: -17 }}
+                  left={{ xs: -15, mobile: -17 }}
                   sx={{
-                    borderTopStyle: { xs: "none", mdMobile: "dashed" },
+                    borderTopStyle: { xs: "none", mobile: "dashed" },
                     borderRight: "none",
                     borderBottomStyle: "dashed",
-                    borderLeftStyle: { xs: "none", mdMobile: "dashed" },
+                    borderLeftStyle: { xs: "none", mobile: "dashed" },
                     borderColor: "#ffa500",
                     borderWidth: "10px",
-                    borderRadius: { xs: "0", mdMobile: "20px" },
+                    borderRadius: { xs: "0", mobile: "20px" },
                   }}
                 />
               </Box>
@@ -201,7 +187,7 @@ const DiscountBox = () => {
               <Box
                 position="absolute"
                 right={-50}
-                top={{ xs: -90, mdMobile: -50 }}
+                top={{ xs: -90, mobile: -50 }}
                 minWidth="70px"
                 minHeight="70px"
                 width="70px"
@@ -226,9 +212,9 @@ const DiscountBox = () => {
               {/* dashed circle right effect */}
               <Box
                 position="absolute"
-                right={{ xs: "auto", mdMobile: -50 }}
-                top={{ xs: -90, mdMobile: "auto" }}
-                left={{ xs: -50, mdMobile: "auto" }}
+                right={{ xs: "auto", mobile: -50 }}
+                top={{ xs: -90, mobile: "auto" }}
+                left={{ xs: -50, mobile: "auto" }}
                 bottom={-70}
                 minWidth="70px"
                 minHeight="70px"
@@ -253,7 +239,7 @@ const DiscountBox = () => {
               </Box>
             </Box>
             {/* discount details */}
-            <Box flex={0.27} height="100%" order={{ xs: 1, mdMobile: 2 }}>
+            <Box flex={0.27} height="100%" order={{ xs: 1, mobile: 2 }}>
               <Box
                 display="flex"
                 alignItems="center"
@@ -263,7 +249,7 @@ const DiscountBox = () => {
                   borderColor: "#ffa500",
                   borderStyle: "solid",
                   borderLeftStyle: "dashed",
-                  borderWidth: { xs: 0, mdMobile: "10px" },
+                  borderWidth: { xs: 0, mobile: "10px" },
                 }}
                 borderRadius="15px"
                 position="relative"
@@ -318,7 +304,7 @@ const DiscountBox = () => {
                   zIndex={9}
                   top={40}
                   right={-20}
-                  display={{ xs: "none", mdMobile: "block" }}
+                  display={{ xs: "none", mobile: "block" }}
                 >
                   <Box position="relative">
                     <Box
@@ -346,13 +332,13 @@ const DiscountBox = () => {
                   border="10px dashed #ffa500"
                   sx={{
                     borderLeftStyle: "none",
-                    borderRightStyle: { xs: "none", mdMobile: "dashed" },
-                    borderBottomStyle: { xs: "none", mdMobile: "dashed" },
-                    borderRadius: { xs: "0", mdMobile: "15px" },
+                    borderRightStyle: { xs: "none", mobile: "dashed" },
+                    borderBottomStyle: { xs: "none", mobile: "dashed" },
+                    borderRadius: { xs: "0", mobile: "15px" },
                   }}
                   width={{
                     xs: "108%",
-                    mdMobile: "111%",
+                    mobile: "111%",
                     md: "107%",
                     lg: "106%",
                   }}

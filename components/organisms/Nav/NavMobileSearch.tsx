@@ -10,10 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { TProduct, useProducts } from "./NavSearch";
+import useProducts from "@/hooks/useProducts";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { TProduct } from "@/utils/types/Product";
 
 const DrawerSearchCard = ({ product }: { product: TProduct }) => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const DrawerSearchCard = ({ product }: { product: TProduct }) => {
     >
       {/* left */}
       <Box display="flex" alignItems="center">
-        <Box className={vazirmatn.className}>{product.name}</Box>
+        <Box className={vazirmatn.className}>{product.title}</Box>
       </Box>
       {/* right */}
       <Box display="flex" alignItems="center" boxSizing="border-box" p="10px">
@@ -56,11 +57,7 @@ const NavMobileSearch = () => {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
-  const {
-    data: products,
-    isLoading: productsLoading,
-    error: productsError,
-  } = useProducts;
+  const { data: products, isLoading: productsLoading } = useProducts();
 
   return (
     <>
@@ -298,8 +295,11 @@ const NavMobileSearch = () => {
                   }}
                 >
                   <Typography
-                    className={vazirmatn.className}
-                    sx={{ fontSize: "15px", color: "#fff" }}
+                    sx={{
+                      fontSize: "15px",
+                      fontFamily: vazirmatn.style.fontFamily,
+                      color: "#fff",
+                    }}
                   >
                     مشاهده نتایج
                   </Typography>
@@ -309,8 +309,11 @@ const NavMobileSearch = () => {
             {/* right */}
             <Box flex={1}>
               <Typography
-                className={vazirmatn.className}
-                sx={{ fontSize: "12px", direction: "rtl" }}
+                sx={{
+                  fontSize: "12px",
+                  fontFamily: vazirmatn.style.fontFamily,
+                  direction: "rtl",
+                }}
               >
                 تعداد محصولات: {products ? products.length : 0}
               </Typography>

@@ -32,7 +32,7 @@ const OffersNav = () => {
                   },
                 }}
               >
-                <Box className={vazirmatn.className} fontSize="14px">
+                <Box fontSize="14px" fontFamily={vazirmatn.style.fontFamily}>
                   مجله آموزشی
                 </Box>
                 <Box component="i" className="fa-solid fa-tags" />
@@ -53,7 +53,7 @@ const OffersNav = () => {
                   },
                 }}
               >
-                <Box className={vazirmatn.className} fontSize="14px">
+                <Box fontSize="14px" fontFamily={vazirmatn.style.fontFamily}>
                   تخفیف ها و پیشنهادات
                 </Box>
                 <Box component="i" className="fa-solid fa-tags" />
@@ -74,7 +74,7 @@ const OffersNav = () => {
                   },
                 }}
               >
-                <Box className={vazirmatn.className} fontSize="14px">
+                <Box fontSize="14px" fontFamily={vazirmatn.style.fontFamily}>
                   خرید اقساطی
                 </Box>
                 <Box component="i" className="fa-solid fa-tags" />

@@ -13,7 +13,7 @@ const NavProfile = () => {
         alignItems="center"
         bgcolor="#fff"
         borderRadius="9999px"
-        minHeight="38px"
+        minHeight="33px"
         px="6px"
         sx={{
           cursor: "pointer",

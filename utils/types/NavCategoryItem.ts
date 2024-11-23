@@ -1,4 +1,4 @@
-import { TCategory } from "@/components/Nav/NavSearch";
+import { TCategory } from "@/utils/types/Category";
 
 export type TSubCategoryChildren = TCategory & {
   imageSrc?: string;

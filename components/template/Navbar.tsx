@@ -1,6 +1,8 @@
-import { AppBar, Box, Container, Skeleton } from "@mui/material";
+"use client";
+import { AppBar, Box, Container, Skeleton, ThemeProvider } from "@mui/material";
 import dynamic from "next/dynamic";
 import NavSearch from "@/components/organisms/Nav/NavSearch";
+import CustomBreakPoint from "@/theme/CustomBreakPoint";
 const NavCart = dynamic(() => import("@/components/organisms/Nav/NavCart"), {
   ssr: false,
   loading: () => (
@@ -111,7 +113,12 @@ const Navbar = () => {
             height: "100%",
           }}
         >
-          <Box display="flex" alignItems="center" height="100%">
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent={{ xs: "start", sm: "unset" }}
+            height="100%"
+          >
             {/* cart & profile & tel */}
             <Box
               flex={0.3}
@@ -159,78 +166,63 @@ const Navbar = () => {
             </Box>
             {/* MOBILE search */}
             <Box
-              ml="190px"
               sx={{
-                flex: 1,
-                "@media (min-width: 650px)": { display: "none" },
-                "@media (max-width: 540px)": {
-                  position: "relative",
-                  left: "-190px",
+                flex: { xs: 0, sm: 0.51, md: 0.41 },
+                "@media (min-width: 640px)": {
+                  display: "none",
+                },
+                "@media (min-width: 600px)": {
+                  pointerEvents: "none",
+                  opacity: 0,
                 },
               }}
             >
               <NavMobileSearch />
             </Box>
             {/* logo & category trigger */}
-            <Box
-              flex={0.3}
-              sx={{
-                "@media (max-width: 650px)": { flex: 0.1 },
-              }}
-              display="flex"
-              alignItems="center"
-              justifyContent="end"
-            >
-              {/* logo */}
+            <ThemeProvider theme={CustomBreakPoint}>
               <Box
-                minWidth="125px"
+                flex={{ xs: 0.9, sm: 0.06, lg: 0.28, xl: 0.3 }}
                 display="flex"
-                justifyContent="start"
-                justifySelf="center"
-                bottom="-2px"
-                mr="15px"
-                sx={{
-                  position: "static",
-                  "@media (max-width: 540px)": {
-                    position: "relative",
-                    left: "-100px",
-                  },
-                  "@media (max-width: 390px)": {
-                    left: "-130px",
-                  },
-                  xs: {
-                    left: "-140px",
-                  },
-                }}
+                alignItems="center"
+                justifyContent="center"
+                gap="15px"
               >
-                <NavLogo />
+                {/* logo */}
+                <Box
+                  width="fit-content"
+                  display="flex"
+                  justifyContent="start"
+                  justifySelf="center"
+                >
+                  <NavLogo />
+                </Box>
+                {/* FROM TABLET category trigger */}
+                <Box
+                  sx={{
+                    display: "none",
+                    "@media (min-width: 1250px)": {
+                      display: "block",
+                    },
+                  }}
+                >
+                  <NavCategory />
+                </Box>
+                {/* MOBILE category */}
+                <Box
+                  flex={0.4}
+                  sx={{
+                    "@media (min-width: 1024px)": { display: "none" },
+                    "@media (max-width: 650px)": {
+                      position: "absolute",
+                      right: "5px",
+                    },
+                  }}
+                >
+                  <NavMobileCategory />
+                </Box>
               </Box>
-              {/* FROM TABLET category trigger */}
-              <Box
-                sx={{
-                  display: "none",
-                  "@media (min-width: 1250px)": {
-                    display: "block",
-                  },
-                }}
-              >
-                <NavCategory />
-              </Box>
-              {/* MOBILE category */}
-              <Box
-                flex={0.3}
-                sx={{
-                  "@media (min-width: 540px)": { display: "none" },
-                  position: "absolute",
-                  right: "5px",
-                  "@media (max-width: 250px)": {
-                    right: "10px",
-                  },
-                }}
-              >
-                <NavMobileCategory />
-              </Box>
-            </Box>
+            </ThemeProvider>
           </Box>
         </Container>
       </AppBar>

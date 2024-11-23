@@ -1,0 +1,41 @@
+[
+  {
+    "page": "category",
+    "urlPath": ["دوربین مداربسته"],
+    "specialProducts": {
+      "title": "MOST_PURCHASED",
+      "products": [
+        {
+          "id": 0
+        }
+      ]
+    },
+    "chosenBrands": [
+      { "imageArray": ["", "", ""], "webImageArray": ["", "", ""] }
+    ],
+    "types": [
+      {
+        "id": 0,
+        "title": "",
+        "imageArray": ["", "", ""],
+        "webImageArray": ["", "", ""],
+        "slug": ""
+      }
+    ],
+    "products": [{ "id": 0 }],
+    "menuItems": {
+      "filterItems": [
+        { "name": "something", "subItems": [{ "name": "subcategory item" }] }
+      ],
+      "adsProductBanner": {
+        "imageArray": ["", "", ""],
+        "webImageArray": ["", "", ""]
+      },
+      "mustPopularProducts": [
+        {
+          "id": 1
+        }
+      ]
+    }
+  }
+]

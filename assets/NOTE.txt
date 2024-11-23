@@ -1,0 +1,3 @@
+TODO 
+    ``` [category-page]: filterSlideBar > categoryChosenProducts 
+        * the swiper pagination, slide management* ```

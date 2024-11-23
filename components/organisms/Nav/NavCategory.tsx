@@ -80,7 +80,7 @@ const NavCategory = () => {
           </Box>
           {/* category name */}
           <Box flex={1} display="flex" justifyContent="end">
-            <Link href={props.slug}>
+            <Link href={`/${props.slug}`}>
               <Typography
                 className={`category-name`}
                 fontFamily={vazirmatn.style.fontFamily}
@@ -114,6 +114,7 @@ const NavCategory = () => {
       position="relative"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      flex={1}
       sx={{
         "&:hover": {
           "& .trigger-icon": {
@@ -300,7 +301,13 @@ const NavCategory = () => {
                 </Box>
                 {/* category contents */}
                 {selectedCategoryIndex !== null && (
-                  <Box display="flex" gap="15px">
+                  <Box
+                    display="flex"
+                    gap="15px"
+                    p="10px"
+                    boxSizing="border-box"
+                    height="100%"
+                  >
                     {categories[selectedCategoryIndex].subCategories?.map(
                       (subCategory, index) => (
                         <Box
@@ -308,16 +315,19 @@ const NavCategory = () => {
                             Math.random().toString().concat(index.toString())
                           )}
                           fontFamily={vazirmatn.style.fontFamily}
+                          flex={1}
+                          height="100%"
                         >
                           {/* title */}
                           <Box
                             fontSize="14px"
-                            display={
-                              checkForBannerImage(subCategory.children)
-                                ? "none"
-                                : "flex"
-                            }
+                            display="flex"
                             justifyContent="center"
+                            sx={{
+                              opacity: checkForBannerImage(subCategory.children)
+                                ? 0
+                                : 1,
+                            }}
                           >
                             {subCategory.title}
                           </Box>
@@ -329,13 +339,19 @@ const NavCategory = () => {
                                 my: 0.8,
                                 p: 0,
                               },
-                              display: checkForBannerImage(subCategory.children)
-                                ? "none"
-                                : "flex",
+                              opacity: checkForBannerImage(subCategory.children)
+                                ? 0
+                                : 1,
+                              display: "flex",
                             }}
                           />
                           {/* children */}
-                          <Box display="flex" flexDirection="column" gap="3px">
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            height="100%"
+                            gap="3px"
+                          >
                             {subCategory.children.map((item, index) =>
                               item.imageSrc ? (
                                 <Box key={item.imageSrc.concat(item.slug)}>
@@ -402,13 +418,16 @@ const NavCategory = () => {
                                   key={item.name.concat(
                                     item.slug.concat(Math.random().toString())
                                   )}
-                                  height="626px"
+                                  height="100%"
                                   display="flex"
                                   alignItems="center"
+                                  justifyContent="center"
                                 >
-                                  <img
+                                  <Image
                                     src={item.bannerImageSrc}
                                     alt="faild to load image"
+                                    width={300}
+                                    height={300}
                                   />
                                 </Box>
                               ) : (

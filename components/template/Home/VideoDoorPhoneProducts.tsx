@@ -1,7 +1,7 @@
 "use client";
 import { vazirmatn } from "@/app/Fonts";
 import ProductCard from "@/components/molecules/ProductCard";
-import { TProductCard } from "@/utils/types/TProductCard";
+import { TProduct } from "@/utils/types/Product";
 import { Box, Button, Container } from "@mui/material";
 import Link from "next/link";
 import React from "react";
@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import videoDoorPhoneProductsData from "@/assets/data/videoDoorPhoneProducts.json";
 
 const VideoDoorPhoneProducts = () => {
-  const videoDoorPhoneProducts: TProductCard[] = videoDoorPhoneProductsData;
+  const videoDoorPhoneProducts: TProduct[] = videoDoorPhoneProductsData;
   return (
     <Box>
       <Container
@@ -52,6 +52,7 @@ const VideoDoorPhoneProducts = () => {
                 dir="rtl"
                 style={{
                   height: "100%",
+                  overflowY: "visible",
                 }}
                 slidesPerView={5}
                 spaceBetween={30}
@@ -84,7 +85,7 @@ const VideoDoorPhoneProducts = () => {
                     key={product.id.toString().concat(product.image)}
                   >
                     <ProductCard product={product} minHeight="100%">
-                      <ProductCard.Timer
+                      <ProductCard.TopDetails
                         sx={{
                           "&.productCard-timer_container": {
                             pt: "7px",
@@ -92,23 +93,7 @@ const VideoDoorPhoneProducts = () => {
                           },
                         }}
                       />
-                      <ProductCard.Image
-                        sx={{
-                          mt: "40px",
-                          "@media (max-width: 1250px)": {
-                            "& .productCard-image": {
-                              width: 170,
-                              height: 170,
-                            },
-                          },
-                          "@media (max-width: 640px)": {
-                            "& .productCard-image": {
-                              width: 200,
-                              height: 200,
-                            },
-                          },
-                        }}
-                      />
+                      <ProductCard.Image />
                       <ProductCard.Colors
                         sx={{
                           "& .productCard-colors-placeholder": {
@@ -119,7 +104,7 @@ const VideoDoorPhoneProducts = () => {
                       <ProductCard.FastExpress
                         sx={{
                           "& .productCard-fastExpress-placeholder": {
-                            minHeight: "40px",
+                            minHeight: "55px",
                           },
                         }}
                       />

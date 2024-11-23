@@ -5,7 +5,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "dashboard.dcakala.com",
-        pathname: "/public/images/product/**",
         port: "",
       },
     ],

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import { roboto, vazirmatn } from "./Fonts";
 import "./globals.css";
-import { roboto } from "./Fonts";
 
 export const metadata: Metadata = {
   title: "dcakala clone",
   description: "a clone of the www.dcakala.com website",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+  }>
+) {
+  const { children } = props;
   return (
-    <html lang="en" className={`${roboto.className}`}>
+    <html lang="en" className={`${roboto.className} ${vazirmatn.className}`}>
       <head>
         {/* font awesome links */}
         <link
