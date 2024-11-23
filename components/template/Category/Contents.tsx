@@ -377,7 +377,7 @@ const Contents = ({
             <Swiper
               dir="rtl"
               style={{
-                height: "100%",
+                height: "94%",
                 overflowY: "visible",
               }}
               slidesPerView={4}
