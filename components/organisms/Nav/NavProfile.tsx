@@ -7,7 +7,7 @@ import React from "react";
 const NavProfile = () => {
   const token = "null";
   return (
-    <Link href="login">
+    <Link href="/login">
       <Box
         display="flex"
         alignItems="center"

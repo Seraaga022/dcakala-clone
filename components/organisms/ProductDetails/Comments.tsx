@@ -124,6 +124,13 @@ const Comments = ({
                       sx={{
                         bgcolor: "#ff7a01",
                         width: { xs: "auto", mobile: "100%" },
+                        boxShadow: 1,
+                        "&:hover": {
+                          boxShadow: 2,
+                        },
+                        "&:active": {
+                          boxShadow: "0 6px 9px silver",
+                        },
                       }}
                     >
                       <Typography fontSize="14px" color="#fff">

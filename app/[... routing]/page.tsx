@@ -12,7 +12,7 @@ interface Props {
   params: string[];
 }
 
-const Page = ({ params }: Props) => {
+const page = ({ params }: Props) => {
   const {
     urlPath,
     productDetails: {
@@ -91,4 +91,4 @@ const Page = ({ params }: Props) => {
   );
 };
 
-export default Page;
+export default page;
