@@ -1,13 +1,16 @@
 "use client";
 import getUniqueKey from "@/utils/lib/UniqueKey";
 import {
+  ProductDiscountNumberT,
   ProductMediaT,
   ProductMediaTypeT,
   ProductNameT,
+  ProductSpecialOfferT,
 } from "@/utils/types/ProductDetails";
-import { Category, Clear, Share } from "@mui/icons-material";
+import { Category, Clear, PlayCircle, Share } from "@mui/icons-material";
 import {
   Box,
+  CardMedia,
   Dialog,
   Divider,
   IconButton,
@@ -22,18 +25,23 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import Grid from "@mui/material/Grid2";
+import { CustomTab, CustomTabPanel } from "@/components/molecules/CustomTab";
 
 const ProductImages = ({
   media,
   currentPage,
   name,
+  discount,
+  specialOffer,
 }: {
   media: ProductMediaT[];
   currentPage: string;
   name: ProductNameT;
+  discount: ProductDiscountNumberT;
+  specialOffer: ProductSpecialOfferT;
 }) => {
-  const [selectedImage, setSelectedImage] = React.useState<number>(0);
-  const [selectedDialogBanner, setSelectedDialogBanner] =
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState<number>(0);
+  const [selectedDialogBannerIndex, setSelectedDialogBannerIndex] =
     React.useState<number>(0);
   const swiperRef = React.useRef<SwiperRef>(null);
   const [isMediaDialogOpen, setMediaDialogOpen] = React.useState(false);
@@ -42,58 +50,37 @@ const ProductImages = ({
 
   React.useEffect(() => {
     if (!swiperRef.current) return;
-    swiperRef.current.swiper.slideTo(selectedImage);
-  }, [selectedImage]);
+    swiperRef.current.swiper.slideTo(selectedImageIndex);
+  }, [selectedImageIndex]);
+
+  React.useEffect(() => {
+    if (selectedDialogBannerIndex === getVideoMediaIndex())
+      setSelectedDialogTab("video");
+    else setSelectedDialogTab("picture");
+  }, [isMediaDialogOpen]);
 
   const handleImageClick = (index: number) => {
-    setSelectedImage(index);
-    setSelectedDialogBanner(index);
-    setMediaDialogOpen(true);
-  };
-
-  const CustomDialogTab = ({
-    label,
-    content,
-  }: {
-    label: ProductMediaTypeT;
-    content: string;
-  }) => {
-    return (
-      <Box
-        px="1.5em"
-        py=".7em"
-        sx={{
-          borderBottom:
-            label === selectedDialogTab ? "2px solid #ff8415" : "none",
-          cursor: "default",
-        }}
-        onClick={() => setSelectedDialogTab(label)}
-      >
-        <Typography
-          fontSize={{ xs: "3vw", mobile: ".9em" }}
-          color="#ff8415"
-          fontWeight={400}
-        >
-          {content}
-        </Typography>
-      </Box>
-    );
-  };
-
-  const CustomDialogTabPanel = ({
-    ...props
-  }: React.PropsWithChildren & { value: ProductMediaTypeT }) => {
-    const { children, value } = props;
-    return (
-      <Box hidden={value !== selectedDialogTab} pt="8px">
-        {children}
-      </Box>
-    );
+    if (getVideoMediaIndex() !== index) {
+      setSelectedImageIndex(index);
+      setSelectedDialogBannerIndex(index);
+      setMediaDialogOpen(true);
+    } else {
+      setSelectedDialogBannerIndex(index);
+      setMediaDialogOpen(true);
+    }
   };
 
   const videoExists = () => {
     return media.some((m) => m.type === "video") ? true : false;
   };
+
+  function getVideoMediaIndex() {
+    return media.findIndex((m) => m.type === "video");
+  }
+
+  function getFirstImageIndex() {
+    return media.findIndex((m) => m.type === "picture");
+  }
 
   return (
     <Box height={{ xs: "auto", mobile: "120svh", md: "600px" }}>
@@ -104,7 +91,7 @@ const ProductImages = ({
         height="90%"
       >
         {/* social networks */}
-        <Grid height="11%" p="15px" size={12}>
+        <Grid height="11%" p="15px" size={12} position="relative">
           <Stack direction="row" justifyContent="center">
             {/* socials */}
             <Box>
@@ -125,6 +112,29 @@ const ProductImages = ({
               </IconButton>
             </Box>
           </Stack>
+          {/* right and left icons */}
+          <Box>
+            <Box position="absolute" left={0} top="40%">
+              {discount && (
+                <Box>
+                  <Box p="5px" bgcolor="#ef4444">
+                    <Typography color="#fff">{discount}</Typography>
+                  </Box>
+                </Box>
+              )}
+            </Box>
+            <Box position="absolute" right={0} top="40%">
+              {specialOffer && (
+                <Box width="100px" height="30px">
+                  <Image
+                    src="/images/special-discount-tag.png"
+                    alt="special-discount-logo"
+                    fill
+                  />
+                </Box>
+              )}
+            </Box>
+          </Box>
         </Grid>
         {/* image swiper */}
         <Grid
@@ -158,43 +168,34 @@ const ProductImages = ({
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
               }}
-              onSlideChange={(swiper) => setSelectedImage(swiper.activeIndex)}
+              onSlideChange={(swiper) =>
+                setSelectedImageIndex(swiper.activeIndex)
+              }
               style={{
                 height: "100%",
               }}
             >
-              {media.map((m, index) =>
-                m.type === "video" ? (
-                  <SwiperSlide
-                    key={getUniqueKey()}
-                    onClick={() => handleImageClick(index)}
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    video
-                  </SwiperSlide>
-                ) : (
-                  <SwiperSlide
-                    onClick={() => handleImageClick(index)}
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                    key={getUniqueKey()}
-                  >
-                    <Box
-                      width="90%"
-                      position="relative"
-                      sx={{ aspectRatio: 1 / 1, objectFit: "cover" }}
+              {media.map(
+                (m, index) =>
+                  m.type === "picture" && (
+                    <SwiperSlide
+                      onClick={() => handleImageClick(index)}
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                      key={getUniqueKey()}
                     >
-                      <Image src={m.src} alt="product-image" fill />
-                    </Box>
-                  </SwiperSlide>
-                )
+                      <Box
+                        width="90%"
+                        position="relative"
+                        sx={{ aspectRatio: 1 / 1, objectFit: "cover" }}
+                      >
+                        <Image src={m.src} alt="product-image" fill />
+                      </Box>
+                    </SwiperSlide>
+                  )
               )}
               {/* swiper navigation buttons */}
               <Box className="swiper-button-next" />
@@ -265,16 +266,41 @@ const ProductImages = ({
                 >
                   {/* tabs */}
                   <Stack direction="row" spacing={1}>
-                    <CustomDialogTab label="picture" content="تصاویر" />
+                    <CustomTab<ProductMediaTypeT>
+                      selectedTab={selectedDialogTab}
+                      label="picture"
+                      content="تصاویر"
+                      onClickHandler={({ label }) => {
+                        setSelectedDialogTab(label);
+                        setSelectedDialogBannerIndex(getFirstImageIndex());
+                      }}
+                      sx={{
+                        cursor: "default",
+                      }}
+                    />
                     {videoExists() && (
-                      <CustomDialogTab label="video" content="ویدیوها" />
+                      <CustomTab<ProductMediaTypeT>
+                        selectedTab={selectedDialogTab}
+                        label="video"
+                        content="ویدیوها"
+                        onClickHandler={({ label }) => {
+                          setSelectedDialogTab(label);
+                          setSelectedDialogBannerIndex(getFirstImageIndex());
+                        }}
+                        sx={{
+                          cursor: "default",
+                        }}
+                      />
                     )}
                   </Stack>
                   <Divider sx={{ ml: "3px" }} />
                   {/* tab pages */}
                   <Box>
                     {/* pictures */}
-                    <CustomDialogTabPanel value="picture">
+                    <CustomTabPanel
+                      selectedTab={selectedDialogTab}
+                      tab="picture"
+                    >
                       <Box display="flex" gap="8px" dir="rtl" width="100%">
                         <Swiper
                           dir="rtl"
@@ -300,14 +326,14 @@ const ProductImages = ({
                                 <SwiperSlide key={getUniqueKey()}>
                                   <Box
                                     onClick={() =>
-                                      setSelectedDialogBanner(index)
+                                      setSelectedDialogBannerIndex(index)
                                     }
                                     sx={{
                                       borderRadius: "5px",
                                       borderStyle: "solid",
                                       borderWidth: { xs: 0, mobile: "2px" },
                                       borderColor:
-                                        selectedDialogBanner === index
+                                        selectedDialogBannerIndex === index
                                           ? "#ff8415"
                                           : "#e5e7eb",
                                       overflow: "hidden",
@@ -347,9 +373,9 @@ const ProductImages = ({
                           )}
                         </Swiper>
                       </Box>
-                    </CustomDialogTabPanel>
+                    </CustomTabPanel>
                     {/* videos */}
-                    <CustomDialogTabPanel value="video">
+                    <CustomTabPanel selectedTab={selectedDialogTab} tab="video">
                       <Box display="flex" gap="8px" dir="rtl" width="100%">
                         <Swiper
                           dir="rtl"
@@ -375,20 +401,11 @@ const ProductImages = ({
                                 <SwiperSlide key={getUniqueKey()}>
                                   <Box
                                     onClick={() =>
-                                      setSelectedDialogBanner(index)
+                                      setSelectedDialogBannerIndex(index)
                                     }
                                     sx={{
-                                      borderRadius: "5px",
-                                      borderStyle: "solid",
-                                      borderWidth: { xs: 0, mobile: "2px" },
-                                      borderColor:
-                                        selectedDialogBanner === index
-                                          ? "#ff8415"
-                                          : "#e5e7eb",
-                                      overflow: "hidden",
                                       cursor: "pointer",
                                     }}
-                                    border="2px solid red"
                                     height={{
                                       xs: "100%",
                                       sm: "100%",
@@ -398,14 +415,12 @@ const ProductImages = ({
                                   >
                                     <Box
                                       width={{
-                                        xs: "20vw",
-                                        sm: "100%",
-                                        lg: "80px",
+                                        xs: "25vw",
+                                        sm: "180%",
+                                        lg: "125px",
                                       }}
-                                      position="relative"
                                       sx={{
-                                        objectFit: "cover",
-                                        aspectRatio: 1 / 1,
+                                        aspectRatio: 16 / 9,
                                         borderRadius: "5px",
                                         overflow: "hidden",
                                       }}
@@ -413,7 +428,6 @@ const ProductImages = ({
                                       <Box
                                         component="video"
                                         src={m.src}
-                                        bgcolor="red"
                                         width="100%"
                                         height="100%"
                                       />
@@ -424,7 +438,7 @@ const ProductImages = ({
                           )}
                         </Swiper>
                       </Box>
-                    </CustomDialogTabPanel>
+                    </CustomTabPanel>
                   </Box>
                 </Stack>
               </Grid>
@@ -441,15 +455,30 @@ const ProductImages = ({
                     sx={{ aspectRatio: 1 / 1, objectFit: "cover" }}
                   >
                     {media.map((m, index) => {
-                      if (index === selectedDialogBanner)
-                        return (
-                          <Image
-                            key={getUniqueKey()}
-                            src={m.src}
-                            alt="product-banner"
-                            fill
-                          />
-                        );
+                      if (index === selectedDialogBannerIndex)
+                        if (getVideoMediaIndex() !== index)
+                          return (
+                            <Image
+                              key={getUniqueKey()}
+                              src={m.src}
+                              alt="product-banner"
+                              fill
+                            />
+                          );
+                        else
+                          return (
+                            <Box key={getUniqueKey()} mt="10px">
+                              <CardMedia
+                                component={"video"}
+                                src={m.src}
+                                controls
+                                sx={{
+                                  aspectRatio: 16 / 9,
+                                  borderRadius: "5px",
+                                }}
+                              />
+                            </Box>
+                          );
                     })}
                   </Box>
                 </Box>
@@ -457,46 +486,98 @@ const ProductImages = ({
             </Grid>
           </Stack>
         </Dialog>
-        {/* images */}
+        {/* image and videos */}
         <Grid size={12} py="5px">
-          <Swiper
-            dir="rtl"
-            slidesPerView={5.5}
-            spaceBetween={1}
-            className="swiper"
-            style={{
-              height: "100%",
-            }}
-          >
-            {media.map((m, index) =>
-              m.type === "video" ? (
-                <SwiperSlide
-                  key={getUniqueKey()}
-                  onClick={() => handleImageClick(index)}
-                >
-                  video
-                </SwiperSlide>
-              ) : (
-                <SwiperSlide
-                  key={getUniqueKey()}
-                  onClick={() => handleImageClick(index)}
-                >
-                  <Box
-                    width={{ xs: "14vw", mobile: "5vw", xl: "80px" }}
-                    position="relative"
-                    sx={{
-                      objectFit: "cover",
-                      aspectRatio: 1 / 1,
-                      cursor: "pointer",
-                      opacity: selectedImage === index ? 1 : 0.3,
-                    }}
-                  >
-                    <Image src={m.src} alt="product-image" fill />
-                  </Box>
-                </SwiperSlide>
-              )
-            )}
-          </Swiper>
+          <Grid container>
+            {/* images */}
+            <Grid size={9.2}>
+              <Swiper
+                dir="rtl"
+                slidesPerView={videoExists() ? 3.5 : 5.5}
+                spaceBetween={2}
+                className="swiper"
+                style={{
+                  height: "100%",
+                }}
+              >
+                {media.map(
+                  (m, index) =>
+                    m.type === "picture" && (
+                      <SwiperSlide
+                        key={getUniqueKey()}
+                        onClick={() => handleImageClick(index)}
+                      >
+                        <Box
+                          width={{ xs: "14vw", mobile: "5vw", xl: "80px" }}
+                          position="relative"
+                          sx={{
+                            objectFit: "cover",
+                            aspectRatio: 1 / 1,
+                            cursor: "pointer",
+                            opacity: selectedImageIndex === index ? 1 : 0.3,
+                          }}
+                        >
+                          <Image src={m.src} alt="product-image" fill />
+                        </Box>
+                      </SwiperSlide>
+                    )
+                )}
+              </Swiper>
+            </Grid>
+            {/* video */}
+            <Grid size={2.8}>
+              <Box height="100%">
+                {media.map(
+                  (m, index) =>
+                    m.type === "video" && (
+                      <Box
+                        key={getUniqueKey()}
+                        display="flex"
+                        alignItems="center"
+                        height="100%"
+                        position="relative"
+                        onClick={() => handleImageClick(index)}
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      >
+                        <CardMedia
+                          component={"video"}
+                          src={m.src}
+                          sx={{
+                            width: { xs: "14vw", mobile: "5vw", xl: "100px" },
+                            aspectRatio: 16 / 9,
+                            filter: "brightness(50%)",
+                          }}
+                        />
+                        {/* video play button */}
+                        <Box
+                          position="absolute"
+                          top={{ xs: "31%", xl: "20%" }}
+                          right={{
+                            xs: "50%",
+                            smL3: "55%",
+                            lg: "47%",
+                            xl: "33%",
+                          }}
+                        >
+                          <PlayCircle
+                            sx={{
+                              color: "#ff7900",
+                              fontSize: {
+                                xs: "6vw",
+                                mobile: "2vw",
+                                xl: "40px",
+                              },
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    )
+                )}
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
       {/* english name */}

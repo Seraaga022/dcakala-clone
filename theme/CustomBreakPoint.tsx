@@ -13,6 +13,7 @@ declare module "@mui/material/styles" {
     mobile: true;
     smL1_5: true;
     smL2: true;
+    smL2_5: true;
     smL3: true;
     smL4: true;
     lgL1: true;
@@ -29,13 +30,14 @@ export default function CustomBreakPoint() {
         md: 960,
         lg: 1280,
         xl: 1920,
-        // customs (*Level) // format
+        // customs Format: *(L)[Level]LevelNumber
         xsL1: 250,
         xsL2: 350,
         xsL3: 400,
         mobile: 640,
         smL1_5: 700,
-        smL2: 750,
+        smL2: 770,
+        smL2_5: 800,
         smL3: 860,
         smL4: 1000,
         lgL1: 1024,

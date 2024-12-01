@@ -3,7 +3,7 @@ import { vazirmatn } from "@/app/Fonts";
 import { Box, Container, ThemeProvider } from "@mui/material";
 import React from "react";
 import DiscountBoxCustomBreakPoint from "@/theme/CustomBreakPoint";
-import useTimer from "@/hooks/useTimer";
+import useTime from "@/hooks/useTimer";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import discountedProductsData from "@/assets/data/discountedProducts.json";
@@ -11,7 +11,7 @@ import { TProduct } from "@/utils/types/Product";
 import ProductCard from "@/components/molecules/ProductCard";
 
 const DiscountBox = () => {
-  const remainingDiscountTime = useTimer();
+  const remainingDiscountTime = useTime({});
   const discountedProducts: TProduct[] = discountedProductsData;
 
   return (

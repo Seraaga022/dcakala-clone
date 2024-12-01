@@ -10,7 +10,7 @@ import {
   TFilterItems,
   TUrlPath,
 } from "@/utils/types/Category";
-import BreadCrumbs from "@/components/atoms/BreadCrumbs";
+import BreadCrumbs from "@/components/molecules/BreadCrumbs";
 import { TProduct } from "@/utils/types/Product";
 import categoryPageProducts from "@/assets/data/categoryPageProducts.json";
 import "swiper/css";

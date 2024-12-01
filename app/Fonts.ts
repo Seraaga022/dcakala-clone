@@ -16,3 +16,8 @@ export const neda = localFont({
   src: "../public/fonts/Neda Outline_MRT.ttf",
   weight: "100 200 300 400 500 600 700 800 900",
 });
+
+export const eduAustraliaVICWANTHandGuides = localFont({
+  src: "../public/fonts/EduAUVICWANTGuides-VariableFont_wght.ttf",
+  weight: "100 200 300 400 500 600 700 800 900",
+});

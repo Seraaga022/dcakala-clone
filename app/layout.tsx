@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { roboto, vazirmatn } from "./Fonts";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import CustomThemeProvider from "./[... routing]/CustomThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,7 +51,11 @@ export default function RootLayout(
         />
       </head>
       <body>
-        <main>{children}</main>
+        <AppRouterCacheProvider>
+          <CustomThemeProvider>
+            <main>{children}</main>
+          </CustomThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

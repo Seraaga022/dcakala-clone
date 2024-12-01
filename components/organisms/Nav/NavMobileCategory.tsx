@@ -5,9 +5,9 @@ import React from "react";
 
 const NavMobileCategory = () => {
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = React.useState<number | null>(
-    null
-  );
+  // const [selectedCategory, setSelectedCategory] = React.useState<number | null>(
+  //   null
+  // );
 
   return (
     <>

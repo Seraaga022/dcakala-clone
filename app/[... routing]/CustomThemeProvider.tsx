@@ -1,9 +1,15 @@
 "use client";
 import CustomBreakPoint from "@/theme/CustomBreakPoint";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import React from "react";
 import { vazirmatn } from "../Fonts";
+
+declare module "@mui/material/styles" {
+  interface TypographyVariantOptions {
+    price: true;
+  }
+}
 
 const DefaultStyles = createTheme({
   components: {
@@ -19,6 +25,12 @@ const DefaultStyles = createTheme({
           props: { variant: "subtitle2" },
           style: { fontSize: "14px" },
         },
+        // {
+        //   props: { variant: "price" },
+        //   style: {
+        //     fontSize: "12px",
+        //   },
+        // },
       ],
       defaultProps: {
         fontWeight: 300,

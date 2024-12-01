@@ -1,5 +1,6 @@
 "use client";
-import { vazirmatn } from "@/app/Fonts";
+import { InputChangeHandlerT } from "@/app/login/page";
+import CustomInput from "@/theme/CustomInput";
 import { ArrowForwardIos } from "@mui/icons-material";
 import {
   Box,
@@ -7,6 +8,7 @@ import {
   IconButton,
   Stack,
   TextField,
+  ThemeProvider,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -20,7 +22,7 @@ const LoginBox = ({
   isVerifyingPage = false,
 }: {
   val: string;
-  changeHandler: (input: any) => void;
+  changeHandler: (input: InputChangeHandlerT) => void;
   isVerifyingPage?: boolean;
 }) => {
   const router = useRouter();
@@ -108,28 +110,22 @@ const LoginBox = ({
         {/* phone input */}
         <Box mt="15px">
           <Box>
-            <TextField
-              type="number"
-              fullWidth
-              size="small"
-              sx={{
-                "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button ":
-                  { appearance: "none" },
-                "& .MuiInputBase-input": {
-                  fontFamily: vazirmatn.style.fontFamily,
-                },
-                "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: val ? "#ff7900" : "#000",
-                },
-              }}
-              value={val}
-              onChange={changeHandler}
-              slotProps={{
-                inputLabel: {
-                  shrink: true,
-                },
-              }}
-            />
+            <ThemeProvider theme={CustomInput}>
+              <TextField
+                type="number"
+                sx={{
+                  "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: val ? "#ff7900" : "#000",
+                  },
+                  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button ":
+                    {
+                      appearance: "none",
+                    },
+                }}
+                value={val}
+                onChange={changeHandler}
+              />
+            </ThemeProvider>
           </Box>
         </Box>
         {/* OTP retry and timer */}

@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "dashboard.dcakala.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "upload.vidbeen.ir",
+        port: "",
+      },
     ],
   },
 };

@@ -9,10 +9,12 @@ import {
   ProductContactInfoT,
   ProductCreatorDetailsT,
   ProductDeliveryFeaturesItemT,
+  ProductDiscountNumberT,
   ProductFeatureT,
   ProductMediaT,
   ProductNameT,
   ProductPriceT,
+  ProductSpecialOfferT,
   propertiesSectionRefT,
 } from "@/utils/types/ProductDetails";
 import { Box, Typography } from "@mui/material";
@@ -34,6 +36,8 @@ const TopSection = ({
   media: ProductMediaT[];
   propertiesSectionRef: React.RefObject<propertiesSectionRefT>;
   commentsSectionRef: React.RefObject<commentsSectionRefT>;
+  discount: ProductDiscountNumberT;
+  specialOffer: ProductSpecialOfferT;
 }) => {
   const {
     colors,
@@ -48,6 +52,8 @@ const TopSection = ({
     media,
     propertiesSectionRef,
     commentsSectionRef,
+    discount,
+    specialOffer,
   } = props;
 
   return (
@@ -67,6 +73,7 @@ const TopSection = ({
             contactInfo={contactInfo}
           />
         </Grid>
+        {/* product name & brief props */}
         <Grid
           size={{ xs: 12, mobile: 8.5, md: 8.9 }}
           order={{ xs: 1, mobile: 2 }}
@@ -105,6 +112,8 @@ const TopSection = ({
                 media={media}
                 currentPage={currentPage}
                 name={name}
+                discount={discount}
+                specialOffer={specialOffer}
               />
             </Grid>
           </Grid>

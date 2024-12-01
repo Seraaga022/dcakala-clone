@@ -16,3 +16,5 @@ export type TProduct = {
 export type ProductColorT = { value: string; title: string };
 
 export type ProductCardLayoutT = "grid" | "block";
+
+export type ProductCardPropsT = { product: TProduct }

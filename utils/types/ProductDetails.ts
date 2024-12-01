@@ -70,11 +70,9 @@ export type ProductCommentItemT = ProductReviewItemT;
 
 export type ProductPresentationVideoT = Pick<ProductMediaT, "src" | "title">;
 
-export type ProductSpecialDiscountT = boolean;
-
 export type ProductLastPriceUpdateDateT = string;
 
-export type ProductColorsT = Pick<TProduct, "colors">;
+export type ProductColorsT = Pick<TProduct, "colors">["colors"];
 
 export type ProductPackageT = Pick<
   ProductComplementaryProductT,
@@ -91,9 +89,12 @@ export type ProductExpertReviewT = {
 
 export type ProductRelativeProductT = TProduct;
 
+export type ProductDiscountNumberT = TProduct["discountNumber"];
+export type ProductSpecialOfferT = TProduct["specialOffer"];
+
 export type TProductDetailPageContent = {
   urlPath: TUrlPath[];
-  productDetails: ProductColorsT & {
+  productDetails: {
     name: ProductNameT;
     media: ProductMediaT[];
     features: ProductFeatureT[];
@@ -109,7 +110,10 @@ export type TProductDetailPageContent = {
     expertReview?: ProductExpertReviewT;
     contactInfo: ProductContactInfoT;
     presentationVideo?: ProductPresentationVideoT;
-    packages: ProductPackageT[];
+    packages?: ProductPackageT[];
+    colors?: ProductColorsT;
+    discount?: ProductDiscountNumberT;
+    specialOffer?: ProductSpecialOfferT;
   };
 };
 

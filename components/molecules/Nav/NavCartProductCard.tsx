@@ -130,7 +130,7 @@ const NavCartProductCard = ({ product }: TNavCartItems) => {
               <Box
                 border="1px solid silver"
                 borderRadius="9999px"
-                bgcolor={`#${product.color}`}
+                bgcolor={`#${product.color?.value}`}
                 minWidth="18px"
                 minHeight="18px"
               />

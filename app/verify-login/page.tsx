@@ -2,13 +2,12 @@
 import { Box } from "@mui/material";
 import React from "react";
 import LoginBox from "@/components/organisms/Login/LoginBox";
+import { InputChangeHandlerT } from "../login/page";
 
 const Page = () => {
   const [verifyingCode, setVerifyingCode] = React.useState<string>("");
 
-  const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const changeHandler = (e: InputChangeHandlerT) => {
     setVerifyingCode(e.target.value);
     console.log(verifyingCode);
   };

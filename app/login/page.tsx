@@ -3,12 +3,14 @@ import { Box } from "@mui/material";
 import React from "react";
 import LoginBox from "@/components/organisms/Login/LoginBox";
 
+export type InputChangeHandlerT = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
+
 const Page = () => {
   const [phoneVal, setPhoneVal] = React.useState<string>("");
 
-  const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const changeHandler = (e: InputChangeHandlerT) => {
     setPhoneVal(e.target.value);
     console.log(phoneVal);
   };

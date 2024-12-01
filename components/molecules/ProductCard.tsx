@@ -1,6 +1,6 @@
 "use client";
 import { vazirmatn } from "@/app/Fonts";
-import useTimer from "@/hooks/useTimer";
+import useTime from "@/hooks/useTimer";
 import { ProductCardLayoutT, TProduct } from "@/utils/types/Product";
 import { Box, BoxProps, Stack, Typography } from "@mui/material";
 import React, {
@@ -75,7 +75,10 @@ const TopDetails = (props: BoxProps) => {
     product: { discountTime, specialOffer, isNew, slug },
   } = useProductCardContext();
   const timerVal = (discountTime || 0) * 3600;
-  const { hour, minute, second } = useTimer(timerVal, `${slug}-Product`);
+  const { hour, minute, second } = useTime({
+    value: timerVal,
+    name: `${slug}-Product`,
+  });
   return (
     <Box
       className="productCard-timer_container"
@@ -430,7 +433,10 @@ const PriceAndDiscount = (props: BoxProps) => {
                   fontWeight={500}
                   fontSize="16px"
                 >
-                  {price.toLocaleString()}&nbsp;
+                  {discountNumber
+                    ? (price / discountNumber - price).toLocaleString()
+                    : price.toLocaleString()}
+                  &nbsp;
                 </Typography>
                 {/* تومان */}
                 <Typography
@@ -457,7 +463,7 @@ const PriceAndDiscount = (props: BoxProps) => {
                     fontFamily={vazirmatn.style.fontFamily}
                     color="#c4c3c3"
                   >
-                    {(price / discountNumber - price).toLocaleString()}
+                    {price.toLocaleString()}
                   </Typography>
                   &nbsp;
                   {/* تومان */}

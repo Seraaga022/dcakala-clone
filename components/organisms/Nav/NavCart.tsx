@@ -13,55 +13,14 @@ import {
 import { ArrowBackIosNew, ShoppingCartOutlined } from "@mui/icons-material";
 import CustomTooltip from "@/theme/CustomTooltip";
 import Link from "next/link";
-import { TCart } from "@/utils/types/Cart";
 import { useRouter } from "next/navigation";
 import NavCartItem from "@/components/molecules/Nav/NavCartProductCard";
 import { vazirmatn } from "@/app/Fonts";
+import useCart from "@/hooks/useCart";
 
 const NavCart = () => {
   const router = useRouter();
-  const [cart] = React.useState<TCart[]>([
-    {
-      id: 0,
-      image:
-        "https://dashboard.dcakala.com/public/images/product/kone-gates-folding-arm/2024/08/kone-gates-barrier-folding-arm_samll.webp",
-      title: "راهبند کانه گیتس با بوم تاشو",
-      price: 73000000,
-      qntt: 1,
-      color: "6b6666",
-      path: "1",
-    },
-    {
-      id: 1,
-      image:
-        "https://dashboard.dcakala.com/public/images/product/milan-mohest/2024/08/milan-automatic-gate-mohest-400-package-and-box_samll.webp",
-      title: "جک درب پارکینگ میلان 400 مدل Mohest400",
-      price: 9600000,
-      qntt: 1,
-      color: "6b6666",
-      path: "2",
-    },
-    {
-      id: 2,
-      image:
-        "https://dashboard.dcakala.com/public/images/product/kone-gates-folding-arm/2024/08/kone-gates-barrier-folding-arm_samll.webp",
-      title: "راهبند کانه گیتس با بوم تاشو",
-      price: 73000000,
-      qntt: 1,
-      color: "6b6666",
-      path: "1",
-    },
-    {
-      id: 3,
-      image:
-        "https://dashboard.dcakala.com/public/images/product/milan-mohest/2024/08/milan-automatic-gate-mohest-400-package-and-box_samll.webp",
-      title: "جک درب پارکینگ میلان 400 مدل Mohest400",
-      price: 9600000,
-      qntt: 1,
-      color: "6b6666",
-      path: "2",
-    },
-  ]);
+  const { data: cart } = useCart();
   const cartItemsCount = cart.length;
   const calcFullPrice = () => {
     return cart.reduce(

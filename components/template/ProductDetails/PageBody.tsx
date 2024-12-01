@@ -5,6 +5,7 @@ import {
   ProductContactInfoT,
   ProductCreatorDetailsT,
   ProductDeliveryFeaturesItemT,
+  ProductDiscountNumberT,
   ProductExpertReviewT,
   ProductFeatureT,
   ProductMediaT,
@@ -12,13 +13,14 @@ import {
   ProductPriceT,
   ProductPropertiesItemT,
   ProductRelativeProductT,
+  ProductSpecialOfferT,
   propertiesSectionRefT,
 } from "@/utils/types/ProductDetails";
 import { Box } from "@mui/material";
 import React from "react";
 import TopSection from "./TopSection";
 import MiddleSection from "./MiddleSection";
-import { ProductColorT } from "@/utils/types/Product";
+import { ProductColorT, TProduct } from "@/utils/types/Product";
 import { TUrlPath } from "@/utils/types/Category";
 
 const PageBody: React.FC<{
@@ -36,6 +38,8 @@ const PageBody: React.FC<{
   properties: ProductPropertiesItemT[];
   comments: ProductCommentItemT[];
   relativeProducts: ProductRelativeProductT[];
+  discount: ProductDiscountNumberT;
+  specialOffer: ProductSpecialOfferT;
 }> = ({ ...props }) => {
   const {
     colors,
@@ -52,6 +56,8 @@ const PageBody: React.FC<{
     properties,
     comments,
     relativeProducts,
+    discount,
+    specialOffer,
   } = props;
   const propertiesSectionRef = React.useRef<propertiesSectionRefT>(null);
   const commentsSectionRef = React.useRef<commentsSectionRefT>(null);
@@ -78,6 +84,8 @@ const PageBody: React.FC<{
           media={media}
           propertiesSectionRef={propertiesSectionRef}
           commentsSectionRef={commentsSectionRef}
+          discount={discount}
+          specialOffer={specialOffer}
         />
       </Box>
       {/* middle */}

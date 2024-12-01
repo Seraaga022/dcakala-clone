@@ -2,7 +2,7 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
 import { vazirmatn } from "../Fonts";
-import BreadCrumbs from "@/components/atoms/BreadCrumbs";
+import BreadCrumbs from "@/components/molecules/BreadCrumbs";
 import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
 import pageContentData from "@/assets/data/productDetailsPageContent.json";
 import { TProductDetailPageContent } from "@/utils/types/ProductDetails";
@@ -28,9 +28,13 @@ const page = ({ params }: Props) => {
       properties,
       expertReview,
       relativeProducts,
+      discount,
+      specialOffer,
     },
   }: TProductDetailPageContent = pageContentData;
   const currentPage = urlPath[urlPath.length - 1];
+
+  console.log(params);
 
   const totalRating = comments
     ? Math.round(
@@ -83,6 +87,8 @@ const page = ({ params }: Props) => {
               properties={properties}
               comments={comments || []}
               relativeProducts={relativeProducts}
+              discount={discount}
+              specialOffer={specialOffer}
             />
           </Box>
         </Box>

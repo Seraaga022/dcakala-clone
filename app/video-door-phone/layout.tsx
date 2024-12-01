@@ -1,10 +1,8 @@
 import Footer from "@/components/template/Footer";
 import Navbar from "@/components/template/Navbar";
 import OffersNav from "@/components/template/OffersNav";
-import { Box, createTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import "../globals.css";
-
-export const outerTheme = createTheme({});
 
 export default async function videoDoorPhonePLayout({
   children,

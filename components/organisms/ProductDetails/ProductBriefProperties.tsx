@@ -11,7 +11,6 @@ import {
   Box,
   Button,
   Divider,
-  Rating,
   Stack,
   Typography,
   useMediaQuery,

@@ -1,14 +1,20 @@
 "use client";
 import React from "react";
 
-export default function useTimer(value?: number, name?: string) {
+export default function useTime({
+  value = 3600,
+  name = "discountTimer",
+}: {
+  value?: number;
+  name?: string;
+}) {
   // 3600 => 1h
-  const discountLimit = value ? value : 1 * 3600;
-  const [discountTimeLeft, setDiscountTimeLeft] = React.useState<number>(() => {
-    const savedTime = localStorage.getItem(name || "discountTimeLeft");
-    return savedTime ? parseInt(savedTime, 10) : discountLimit;
+  const timeLimit = value;
+  const [timeLeft, setTimeLeft] = React.useState<number>(() => {
+    const savedTime = localStorage.getItem(name);
+    return savedTime ? parseInt(savedTime, 10) : timeLimit;
   });
-  const [remainingDiscountTime, setRemainingDiscountTime] = React.useState({
+  const [outputTime, setOutputTime] = React.useState({
     second: 0,
     minute: 0,
     hour: 0,
@@ -16,23 +22,24 @@ export default function useTimer(value?: number, name?: string) {
 
   // timer functionality
   React.useEffect(() => {
-    if (discountTimeLeft <= 0) return;
+    if (timeLeft <= 0) return;
 
     const timerId = setInterval(() => {
-      setDiscountTimeLeft((prevTime) => {
+      setTimeLeft((prevTime) => {
         const newTime = prevTime - 1;
-        localStorage.setItem("discountTimeLeft", newTime.toString());
+        localStorage.setItem(name, newTime.toString());
         return newTime;
       });
     }, 1000);
-    setRemainingDiscountTime({
-      second: formatTime(discountTimeLeft).seconds,
-      minute: formatTime(discountTimeLeft).minutes,
-      hour: formatTime(discountTimeLeft).hours,
+
+    setOutputTime({
+      second: formatTime(timeLeft).seconds,
+      minute: formatTime(timeLeft).minutes,
+      hour: formatTime(timeLeft).hours,
     });
 
     return () => clearInterval(timerId);
-  }, [discountTimeLeft]);
+  }, [timeLeft, name]);
 
   // retrieve the time to second and minute and hour
   function formatTime(seconds: number) {
@@ -46,5 +53,5 @@ export default function useTimer(value?: number, name?: string) {
     };
   }
 
-  return remainingDiscountTime;
+  return outputTime;
 }
