@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid2";
 import Image from "next/image";
 import React from "react";
 
-const CartProductsData = async ({ cart }: { cart: TCart[] }) => {
+const CartProductsData = ({ cart }: { cart: TCart[] }) => {
   const CartProductCard = (product: TNavCartItems) => {
     const {
       product: { image, price, qntt, color, title, discount },

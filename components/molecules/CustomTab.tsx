@@ -59,14 +59,15 @@ export function CustomTab<TabsT>({
 }
 
 export function CustomTabPanel<TabsT>({
-  ...props
+  children,
+  selectedTab,
+  tab,
 }: React.PropsWithChildren & {
   tab: TabsT;
   selectedTab: TabsT;
 }) {
-  const { children, selectedTab: selectedDialogTab, tab: value } = props;
   return (
-    <Box hidden={value !== selectedDialogTab} pt="8px">
+    <Box hidden={tab !== selectedTab} pt="8px">
       {children}
     </Box>
   );
