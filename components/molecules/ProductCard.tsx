@@ -72,12 +72,12 @@ export default function ProductCard({
 
 const TopDetails = (props: BoxProps) => {
   const {
-    product: { discountTime, specialOffer, isNew, slug },
+    product: { discountTime, specialOffer, isNew, id },
   } = useProductCardContext();
   const timerVal = (discountTime || 0) * 3600;
   const { hour, minute, second } = useTime({
     value: timerVal,
-    name: `${slug}-Product`,
+    name: `${id}-Product`,
   });
   return (
     <Box

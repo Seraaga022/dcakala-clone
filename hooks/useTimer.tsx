@@ -1,17 +1,20 @@
 "use client";
 import React from "react";
+import Cookies from "universal-cookie";
 
 export default function useTime({
-  value = 3600,
-  name = "discountTimer",
+  value,
+  name,
 }: {
-  value?: number;
-  name?: string;
+  value: number;
+  name: string;
 }) {
   // 3600 => 1h
   const timeLimit = value;
+  const cookies = new Cookies(null, { path: "/" });
+
   const [timeLeft, setTimeLeft] = React.useState<number>(() => {
-    const savedTime = localStorage.getItem(name);
+    const savedTime = cookies.get(name) || 0;
     return savedTime ? parseInt(savedTime, 10) : timeLimit;
   });
   const [outputTime, setOutputTime] = React.useState({
@@ -27,7 +30,7 @@ export default function useTime({
     const timerId = setInterval(() => {
       setTimeLeft((prevTime) => {
         const newTime = prevTime - 1;
-        localStorage.setItem(name, newTime.toString());
+        cookies.set(name, newTime.toString(), { path: "/" });
         return newTime;
       });
     }, 1000);

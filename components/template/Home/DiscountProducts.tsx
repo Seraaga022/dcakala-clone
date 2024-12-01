@@ -11,7 +11,7 @@ import { TProduct } from "@/utils/types/Product";
 import ProductCard from "@/components/molecules/ProductCard";
 
 const DiscountBox = () => {
-  const remainingDiscountTime = useTime({});
+  const remainingDiscountTime = useTime({ name: "discountTimer", value: 3600 });
   const discountedProducts: TProduct[] = discountedProductsData;
 
   return (
