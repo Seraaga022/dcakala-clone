@@ -1,3 +1,4 @@
+import { isAuthenticated } from "@/app/address/page";
 import { vazirmatn } from "@/app/Fonts";
 import { AccountCircleRounded } from "@mui/icons-material";
 import { Avatar, Box, Typography } from "@mui/material";
@@ -6,6 +7,8 @@ import React from "react";
 
 const NavProfile = () => {
   const token = "null";
+  const isAuth = !!isAuthenticated;
+
   return (
     <Link href="/login">
       <Box
@@ -35,7 +38,7 @@ const NavProfile = () => {
               fontFamily: vazirmatn.style.fontFamily,
             }}
           >
-            وارد شوید
+            {isAuth ? "user name" : "وارد شوید"}
           </Typography>
         </Box>
         {/* avatar */}
