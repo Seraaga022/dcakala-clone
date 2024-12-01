@@ -31,7 +31,8 @@ const CategoriesGridFeed = () => {
                     srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_3x.jpg 3x"
                     type="image/jpg"
                   />
-                  <img
+                  <Box
+                    component="img"
                     style={{ borderRadius: ".5rem" }}
                     width="100%"
                     srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/konegates-desktop-new-size_3x.jpg 3x"
@@ -52,7 +53,8 @@ const CategoriesGridFeed = () => {
                     srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_3x.jpg 3x"
                     type="image/jpg"
                   />
-                  <img
+                  <Box
+                    component="img"
                     width="100%"
                     srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_3x.jpg 3x"
                     src="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/electropeyk-desktope-new-size_original.jpg"
@@ -74,7 +76,8 @@ const CategoriesGridFeed = () => {
                   srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_3x.jpg 3x"
                   type="image/jpg"
                 />
-                <img
+                <Box
+                  component="img"
                   width="100%"
                   srcSet="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_original.jpg , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_2x.jpg 2x , https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_3x.jpg 3x"
                   src="https://dashboard.dcakala.com/public/images/home/simple-banner/2024/09/pool-cover-electric-shutter-desktop-design_original.jpg"

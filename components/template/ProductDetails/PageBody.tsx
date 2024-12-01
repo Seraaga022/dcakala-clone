@@ -20,7 +20,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import TopSection from "./TopSection";
 import MiddleSection from "./MiddleSection";
-import { ProductColorT, TProduct } from "@/utils/types/Product";
+import { ProductColorT } from "@/utils/types/Product";
 import { TUrlPath } from "@/utils/types/Category";
 
 const PageBody: React.FC<{

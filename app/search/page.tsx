@@ -1,10 +1,11 @@
-"use client";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 
-const Page = () => {
-  const searchParams = useSearchParams();
-  return <div>{searchParams.get("search")}</div>;
+interface Props {
+  params: { search: string };
+}
+
+const Page = ({ params: { search } }: Props) => {
+  return <div>{search}</div>;
 };
 
 export default Page;

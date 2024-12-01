@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import automaticGateProducts from "@/assets/data/automaticGateProducts.json";
+import { automationGateProductsData } from "@/assets/data/automaticGateProducts";
 import { vazirmatn } from "@/app/Fonts";
 
 const AutomaticGateProducts = () => {
@@ -78,7 +78,7 @@ const AutomaticGateProducts = () => {
                   },
                 }}
               >
-                {automaticGateProducts.map((product) => (
+                {automationGateProductsData.map((product) => (
                   <SwiperSlide
                     key={product.id.toString().concat(product.image)}
                   >

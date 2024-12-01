@@ -5,6 +5,7 @@ import CustomThemeProvider from "../[... routing]/CustomThemeProvider";
 import CartNavbar from "@/components/template/Cart/CartNavbar";
 import CartFooter from "@/components/template/Cart/CartFooter";
 import { Container } from "@mui/material";
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: "سبد خرید دی سی ای کالا",

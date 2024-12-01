@@ -1,18 +1,12 @@
 "use client";
-import { isAuthenticated } from "@/app/address/page";
+import { isAuthenticated } from "@/hooks/useCheckAuth";
 import DeleteAllCartItemsSection from "@/components/molecules/Cart/DeleteAllCartItemsSection";
 import { CustomTab, CustomTabPanel } from "@/components/molecules/CustomTab";
 import { TCart } from "@/utils/types/Cart";
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
-import dynamic from "next/dynamic";
 import React from "react";
-const CartProducts = dynamic(
-  () => import("@/components/molecules/Cart/CartProductsData"),
-  {
-    loading: () => <Box>loading</Box>,
-  }
-);
+import CartProducts from "@/components/molecules/Cart/CartProductsData";
 
 export type TabsT = "cart" | "altCart";
 
@@ -30,7 +24,7 @@ const ProductsSection = ({
 
   return (
     <Box>
-      {/* header */}
+      {/* tabs */}
       <Box sx={{ borderBottom: "1px solid #d9d9d9" }}>
         <Stack direction="row">
           <CustomTab<TabsT>
@@ -59,7 +53,7 @@ const ProductsSection = ({
           )}
         </Stack>
       </Box>
-      {/* contents */}
+      {/* tab panels */}
       <Box p={{ xs: "5px", sm: "15px" }}>
         {/* products */}
         <Box>

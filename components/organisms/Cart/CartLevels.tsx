@@ -7,11 +7,12 @@ import {
 } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const CartLevels = () => {
-  const currentCartSegment = window.location.pathname.split("/")[1];
+  const pathName = usePathname();
+  const currentCartSegment = pathName.split("/")[1];
   const cartSegments = ["cart", "address", "cart#"];
 
   const LevelItem = ({ color = "#d9d9d9" }: { color?: string }) => {

@@ -1,4 +1,4 @@
-import { isAuthenticated } from "@/app/address/page";
+import { isAuthenticated } from "@/hooks/useCheckAuth";
 import { vazirmatn } from "@/app/Fonts";
 import { AccountCircleRounded } from "@mui/icons-material";
 import { Avatar, Box, Typography } from "@mui/material";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 
 const NavProfile = () => {
-  const token = "null";
+  // const token = "null";
   const isAuth = !!isAuthenticated;
 
   return (
@@ -16,7 +16,7 @@ const NavProfile = () => {
         alignItems="center"
         bgcolor="#fff"
         borderRadius="9999px"
-        minHeight="33px"
+        height="33px"
         px="6px"
         sx={{
           cursor: "pointer",
@@ -25,8 +25,9 @@ const NavProfile = () => {
         {/* text */}
         <Box
           mr="5px"
+          pt="2px"
+          display={isAuth ? "block" : "none"}
           sx={{
-            display: token ? "block" : "none",
             "@media (max-width: 1000px)": { display: "none" },
             minWidth: "50px",
           }}

@@ -22,6 +22,8 @@ export type ProductPropertiesItemT = {
   items: ProductPropertiesSubItemT[];
 };
 
+type ProductSpecialDiscountT = boolean;
+
 export type ProductPriceT = Pick<TProduct, "price"> & {
   specialDiscount?: ProductSpecialDiscountT;
   lastUpdatedPriceDate?: ProductLastPriceUpdateDateT;

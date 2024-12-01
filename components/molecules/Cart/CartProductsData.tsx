@@ -1,4 +1,4 @@
-import { CartInfo } from "@/app/cart/page";
+import { CartInfo } from "@/hooks/useCart";
 import getUniqueKey from "@/utils/lib/UniqueKey";
 import { TCart, TNavCartItems } from "@/utils/types/Cart";
 import { ProductColorT } from "@/utils/types/Product";
@@ -8,33 +8,33 @@ import Grid from "@mui/material/Grid2";
 import Image from "next/image";
 import React from "react";
 
-const CartProductsData = ({ cart }: { cart: TCart[] }) => {
-  const CartProductCardColorBox = ({ color }: { color: ProductColorT }) => {
-    return (
-      <Box p="7px" bgcolor="#f6f6f6" borderRadius="5px" width="100%">
-        <Stack direction="row" spacing={1} justifyContent="start" dir="rtl">
-          <Typography>رنگ:</Typography>
-          {/* color title */}
-          <Typography pr="5px">{color?.title}</Typography>
-          {/* color value */}
-          <Box
-            bgcolor={`#${color?.value}`}
-            width="25px"
-            height="25px"
-            borderRadius="9999px"
-            border="1px solid silver"
-          />
-        </Stack>
-      </Box>
-    );
-  };
-
+const CartProductsData = async ({ cart }: { cart: TCart[] }) => {
   const CartProductCard = (product: TNavCartItems) => {
     const {
       product: { image, price, qntt, color, title, discount },
     } = product;
 
     const cartInfo = new CartInfo(cart);
+
+    const CartProductCardColorBox = ({ color }: { color: ProductColorT }) => {
+      return (
+        <Box p="7px" bgcolor="#f6f6f6" borderRadius="5px" width="100%">
+          <Stack direction="row" spacing={1} justifyContent="start" dir="rtl">
+            <Typography>رنگ:</Typography>
+            {/* color title */}
+            <Typography pr="5px">{color?.title}</Typography>
+            {/* color value */}
+            <Box
+              bgcolor={`#${color?.value}`}
+              width="25px"
+              height="25px"
+              borderRadius="9999px"
+              border="1px solid silver"
+            />
+          </Stack>
+        </Box>
+      );
+    };
 
     return (
       <Box
@@ -254,16 +254,17 @@ const CartProductsData = ({ cart }: { cart: TCart[] }) => {
     </Box>
   );
 
-  const output =
-    cart.length > 0
-      ? cart.map((i) => (
-          <Box key={getUniqueKey()}>
-            <CartProductCard product={i} />
-          </Box>
-        ))
-      : EmptyCartComponent;
-
-  return <Stack spacing={2}>{output}</Stack>;
+  return (
+    <Stack spacing={2}>
+      {cart.length > 0
+        ? cart.map((i) => (
+            <Box key={getUniqueKey()}>
+              <CartProductCard product={i} />
+            </Box>
+          ))
+        : EmptyCartComponent}
+    </Stack>
+  );
 };
 
 export default CartProductsData;

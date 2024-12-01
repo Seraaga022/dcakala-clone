@@ -1,4 +1,4 @@
-import { CartInfo } from "@/app/cart/page";
+import { CartInfo } from "@/hooks/useCart";
 import { TCart } from "@/utils/types/Cart";
 import { Box, Stack, Typography } from "@mui/material";
 import { TabsT as CartTabsT } from "@/components/organisms/Cart/ProductsSection";

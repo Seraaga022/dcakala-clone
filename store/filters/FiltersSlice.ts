@@ -1,19 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: TFilter[] = [];
+// const initialState: TFilter[] = [];
 
-type FilterValueT = { valueTitle: string; valueId: number };
-type TFilter = {
-  brandName: string;
-  values: FilterValueT[];
-};
+// type FilterValueT = { valueTitle: string; valueId: number };
+// type TFilter = {
+//   brandName: string;
+//   values: FilterValueT[];
+// };
 
-const CartSlice = createSlice({
-  name: "Filters",
-  initialState,
-  reducers: {
-    addFilters: (state, action: PayloadAction<{ filters: TFilter }>) => {
-      return [...state, action.payload.filters];
-    },
-  },
-});
+// const CartSlice = createSlice({
+//   name: "Filters",
+//   initialState,
+//   reducers: {
+//     addFilters: (state, action: PayloadAction<{ filters: TFilter }>) => {
+//       return [...state, action.payload.filters];
+//     },
+//   },
+// });

@@ -21,12 +21,6 @@ export default function RootLayout(
         {/* font awesome links */}
         <link
           rel="stylesheet"
-          data-purpose="Layout StyleSheet"
-          title="Web Awesome"
-          href="/css/app-wa-3b124ff0e0d7a67cd8c995d0aeb1d15a.css?vsn=d"
-        />
-        <link
-          rel="stylesheet"
           href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
         />
         <link

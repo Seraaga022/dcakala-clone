@@ -46,7 +46,7 @@ import {
   ViewList,
   ViewModule,
 } from "@mui/icons-material";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import getUniqueKey from "@/utils/lib/UniqueKey";
 import { ProductCardLayoutT, TProduct } from "@/utils/types/Product";
 
@@ -192,6 +192,7 @@ const ChosenBrandsCard = ({ brand }: CategoryChosenBrandsCardT) => {
 };
 
 const Contents = ({
+  searchParams,
   importantProducts,
   categoryTypes,
   chosenBrands,
@@ -199,6 +200,7 @@ const Contents = ({
   filterItems,
   categoryProducts,
 }: {
+  searchParams: string;
   importantProducts: TCategoryImportantProducts;
   categoryTypes: TCategoryVariousTypes;
   chosenBrands: TCategoryChosenBrands;
@@ -215,11 +217,12 @@ const Contents = ({
     React.useState<boolean>(false);
 
   const [filters, setFilters] = React.useState<TFilter[]>([]);
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const router = useRouter();
   const [expandedAccordions, setExpandedAccordion] = React.useState<
     Record<string, boolean>
   >({});
+  const pathName = usePathname();
 
   const filterItemsChangeHandler = (
     newItem: FilterValueT & Pick<TFilter, "brandName">
@@ -313,17 +316,17 @@ const Contents = ({
     //   "attr[برند-سازنده_3][1]": "169",
     //   "page": "1"
     // }
-    router.push(window.location + "?" + getAllFiltersAsSearchParams());
+    router.push(pathName + "?" + getAllFiltersAsSearchParams());
   };
 
   const removeFiltersFromUrl = () => {
-    const urlParts = window.location.toString().split("?");
+    const urlParts = pathName.toString().split("?");
     router.push(urlParts[0]);
     setFilters([]);
   };
 
   const areSearchParamsEmpty = () => {
-    return searchParams.size === 0;
+    return searchParams.length === 0;
   };
 
   const handleAccordionChange =
@@ -409,13 +412,7 @@ const Contents = ({
               }}
             >
               {importantProducts.items.map((product) => (
-                <SwiperSlide
-                  key={`${product.slug}-${String(
-                    import("@/utils/lib/UniqueKey").then((module) =>
-                      module.default()
-                    )
-                  )}`}
-                >
+                <SwiperSlide key={getUniqueKey()}>
                   <ProductCard
                     product={product}
                     minWidth="auto"
@@ -519,14 +516,7 @@ const Contents = ({
                   key={type.slug.concat(type.image)}
                   size={{ xs: 6, mobile: 4, lg: 3 }}
                 >
-                  <CategoryTypesCard
-                    key={String(
-                      import("@/utils/lib/UniqueKey").then((module) =>
-                        module.default()
-                      )
-                    )}
-                    type={type}
-                  />
+                  <CategoryTypesCard key={getUniqueKey()} type={type} />
                 </Grid>
               ))}
             </Grid>
@@ -583,14 +573,7 @@ const Contents = ({
               <Box display={{ xs: "none", md: "block" }}>
                 <Grid container spacing={2}>
                   {chosenBrands.items.map((brand) => (
-                    <Grid
-                      key={String(
-                        import("@/utils/lib/UniqueKey").then((module) =>
-                          module.default()
-                        )
-                      )}
-                      size={1.7}
-                    >
+                    <Grid key={getUniqueKey()} size={1.7}>
                       <ChosenBrandsCard brand={brand} />
                     </Grid>
                   ))}
@@ -644,13 +627,7 @@ const Contents = ({
                   }}
                 >
                   {chosenBrands.items.map((brand) => (
-                    <SwiperSlide
-                      key={`${brand.slug}-${String(
-                        import("@/utils/lib/UniqueKey").then((module) =>
-                          module.default()
-                        )
-                      )}`}
-                    >
+                    <SwiperSlide key={getUniqueKey()}>
                       <ChosenBrandsCard brand={brand} />
                     </SwiperSlide>
                   ))}
@@ -1063,11 +1040,7 @@ const Contents = ({
                     {/* options menu */}
                     {consiceFilterOptions.map((option) => (
                       <MenuItem
-                        key={`${String(
-                          import("@/utils/lib/UniqueKey").then((module) =>
-                            module.default()
-                          )
-                        )}`}
+                        key={getUniqueKey()}
                         dir="rtl"
                         value={option}
                         id={option}

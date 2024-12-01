@@ -53,11 +53,11 @@ const ProductImages = ({
     swiperRef.current.swiper.slideTo(selectedImageIndex);
   }, [selectedImageIndex]);
 
-  React.useEffect(() => {
-    if (selectedDialogBannerIndex === getVideoMediaIndex())
-      setSelectedDialogTab("video");
-    else setSelectedDialogTab("picture");
-  }, [isMediaDialogOpen]);
+  // React.useEffect(() => {
+  //   if (selectedDialogBannerIndex === getVideoMediaIndex())
+  //     setSelectedDialogTab("video");
+  //   else setSelectedDialogTab("picture");
+  // }, [selectedImageIndex]);
 
   const handleImageClick = (index: number) => {
     if (getVideoMediaIndex() !== index) {

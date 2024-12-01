@@ -4,9 +4,10 @@ import React from "react";
 import { vazirmatn } from "../Fonts";
 import BreadCrumbs from "@/components/molecules/BreadCrumbs";
 import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
-import pageContentData from "@/assets/data/productDetailsPageContent.json";
+import { productDetailsData } from "@/assets/data/productDetailsPageContent";
 import { TProductDetailPageContent } from "@/utils/types/ProductDetails";
 import PageBody from "@/components/template/ProductDetails/PageBody";
+import { ProductColorT } from "@/utils/types/Product";
 
 interface Props {
   params: string[];
@@ -31,7 +32,7 @@ const page = ({ params }: Props) => {
       discount,
       specialOffer,
     },
-  }: TProductDetailPageContent = pageContentData;
+  }: TProductDetailPageContent = productDetailsData;
   const currentPage = urlPath[urlPath.length - 1];
 
   console.log(params);
@@ -73,7 +74,7 @@ const page = ({ params }: Props) => {
           {/* content */}
           <Box>
             <PageBody
-              colors={colors}
+              colors={colors || {} as ProductColorT[]}
               contactInfo={contactInfo}
               creatorDetails={creatorDetails}
               deliveryFeatures={deliveryFeatures}

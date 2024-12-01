@@ -1,3 +1,4 @@
+"use server";
 import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
 import { Box, Container, Skeleton } from "@mui/material";
 import { vazirmatn } from "../Fonts";
@@ -12,7 +13,7 @@ import {
 } from "@/utils/types/Category";
 import BreadCrumbs from "@/components/molecules/BreadCrumbs";
 import { TProduct } from "@/utils/types/Product";
-import categoryPageProducts from "@/assets/data/categoryPageProducts.json";
+import { categoryPageProductsData } from "@/assets/data/categoryPageProducts";
 import "swiper/css";
 import "swiper/css/navigation";
 const FiltersSideBar = dynamic(
@@ -32,7 +33,11 @@ const FiltersSideBar = dynamic(
   }
 );
 
-const page = () => {
+interface Props {
+  params: string;
+}
+
+const page = ({ params }: Props) => {
   const urlPath: TUrlPath[] = [
     { title: "آیفون تصویری قیمت، فروش و نصب", slug: "video-door-phone" },
   ];
@@ -271,7 +276,7 @@ const page = () => {
     "قیمت، کم به زیاد",
     "قیمت، زیاد به کم",
   ];
-  const categoryProducts: TProduct[] = categoryPageProducts;
+  const categoryProducts: TProduct[] = categoryPageProductsData;
 
   return (
     <Box>
@@ -314,6 +319,7 @@ const page = () => {
                 {/* content */}
                 <Box flex={1} width="70%">
                   <Contents
+                    searchParams={params}
                     importantProducts={importantProducts}
                     categoryTypes={categoryTypes}
                     chosenBrands={chosenBrands}

@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import videoDoorPhoneProductsData from "@/assets/data/videoDoorPhoneProducts.json";
+import { videoDoorPhoneProductsData } from "@/assets/data/videoDoorPhoneProducts";
 
 const VideoDoorPhoneProducts = () => {
   const videoDoorPhoneProducts: TProduct[] = videoDoorPhoneProductsData;

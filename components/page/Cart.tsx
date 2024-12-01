@@ -9,7 +9,7 @@ import CartLayout from "../template/Cart/CartLayout";
 const Cart = () => {
   const { data: cart } = useCart();
   const { data: altCart } = useAltCart();
-  let phoneNumber = "2172195";
+  const phoneNumber = "2172195";
   const freeExpressLimit = 10000000;
 
   const [selectedCart, setSelectedCart] = React.useState<CartTabsT>("cart");

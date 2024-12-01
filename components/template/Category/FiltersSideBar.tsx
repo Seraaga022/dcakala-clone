@@ -17,7 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,6 +43,8 @@ const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
   const [expandedAccordions, setExpandedAccordion] = React.useState<
     Record<string, boolean>
   >({});
+
+  const pathName = usePathname();
 
   const filterItemsChangeHandler = (
     newItem: FilterValueT & Pick<TFilter, "brandName">
@@ -136,11 +138,11 @@ const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
     //   "attr[برند-سازنده_3][1]": "169",
     //   "page": "1"
     // }
-    router.push(window.location + "?" + getAllFiltersAsSearchParams());
+    router.push(pathName + "?" + getAllFiltersAsSearchParams());
   };
 
   const removeFiltersFromUrl = () => {
-    const urlParts = window.location.toString().split("?");
+    const urlParts = pathName.toString().split("?");
     router.push(urlParts[0]);
     setFilters([]);
   };

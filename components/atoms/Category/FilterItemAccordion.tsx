@@ -13,10 +13,7 @@ import {
 import React from "react";
 import { vazirmatn } from "@/app/Fonts";
 import { ExpandMore } from "@mui/icons-material";
-import {
-  FilterValueT,
-  TFilter,
-} from "@/components/template/Category/FiltersSideBar";
+import { FilterValueT, TFilter } from "@/utils/types/Category";
 
 type TFilterItems = {
   title: string;
