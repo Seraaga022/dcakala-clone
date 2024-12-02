@@ -271,7 +271,7 @@ const Colors = (props: BoxProps) => {
           {colors.map((color) => (
             <Box
               className="productCard-color"
-              bgcolor={`#${color}`}
+              bgcolor={`#${color.value}`}
               width={17}
               height={17}
               borderRadius="3px"
