@@ -23,11 +23,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import {
   CategoryChosenBrandsItemT,
   CategoryVariousTypesItemT,
-  FilterValueT,
   TCategoryChosenBrands,
   TCategoryImportantProducts,
   TCategoryVariousTypes,
-  TFilter,
   TFilterItems,
 } from "@/utils/types/Category";
 import ProductCard from "@/components/molecules/ProductCard";
@@ -46,9 +44,9 @@ import {
   ViewList,
   ViewModule,
 } from "@mui/icons-material";
-import { useRouter, usePathname } from "next/navigation";
 import getUniqueKey from "@/utils/lib/UniqueKey";
 import { ProductCardLayoutT, TProduct } from "@/utils/types/Product";
+import useFilterManagement from "@/hooks/useFilterManagement";
 
 type CategoryTypesCardT = {
   type: CategoryVariousTypesItemT;
@@ -192,7 +190,6 @@ const ChosenBrandsCard = ({ brand }: CategoryChosenBrandsCardT) => {
 };
 
 const Contents = ({
-  searchParams,
   importantProducts,
   categoryTypes,
   chosenBrands,
@@ -200,7 +197,6 @@ const Contents = ({
   filterItems,
   categoryProducts,
 }: {
-  searchParams: string;
   importantProducts: TCategoryImportantProducts;
   categoryTypes: TCategoryVariousTypes;
   chosenBrands: TCategoryChosenBrands;
@@ -216,118 +212,20 @@ const Contents = ({
   const [isFiltersDrawerOpen, setFiltersDrawerOpen] =
     React.useState<boolean>(false);
 
-  const [filters, setFilters] = React.useState<TFilter[]>([]);
-  // const searchParams = useSearchParams();
-  const router = useRouter();
   const [expandedAccordions, setExpandedAccordion] = React.useState<
     Record<string, boolean>
   >({});
-  const pathName = usePathname();
 
-  const filterItemsChangeHandler = (
-    newItem: FilterValueT & Pick<TFilter, "brandName">
-  ) => {
-    setFilters((prevFilters) => {
-      const newFilters = prevFilters.map((filter) => {
-        if (filter.brandName === newItem.brandName)
-          return {
-            ...filter,
-            values: filter.values.find((val) => val.valueId === newItem.valueId)
-              ? filter.values.filter((val) => val.valueId !== newItem.valueId)
-              : [
-                  ...filter.values,
-                  { valueTitle: newItem.valueTitle, valueId: newItem.valueId },
-                ],
-          };
-        return filter;
-      });
-
-      // Check if an object with the brand exists
-      const existingBrandIndex = newFilters.findIndex(
-        (f) => f.brandName === newItem.brandName
-      );
-
-      // check if the values is empty
-      if (existingBrandIndex === -1) {
-        return [
-          ...newFilters,
-          {
-            brandName: newItem.brandName,
-            values: [
-              {
-                valueTitle: newItem.valueTitle,
-                valueId: newItem.valueId,
-              },
-            ],
-          },
-        ];
-      }
-
-      return newFilters.filter((f) => f.values.length > 0);
-    });
-  };
-
-  const existsInFilters = (targetValue: string, targetBrandName: string) => {
-    if (!filters || !Array.isArray(filters)) return;
-    for (const filter of filters) {
-      if (filter.brandName === targetBrandName) {
-        return filter.values.some((val) => val.valueTitle === targetValue);
-      }
-    }
-    return false;
-  };
-
-  const getFilterValuesTitle = (): string[] | undefined => {
-    if (!filters || !Array.isArray(filters)) return;
-    const data: string[] = [];
-    filters.forEach((f) => f.values.forEach((v) => data.push(v.valueTitle)));
-    return data;
-  };
-
-  const deleteFromFilters = (valueTitle: string) => {
-    setFilters((prevFilters) => {
-      const updatedFilters = prevFilters.map((f) => ({
-        ...f,
-        values: f.values.filter((v) => v.valueTitle !== valueTitle),
-      }));
-      return updatedFilters.filter((f) => f.values.length > 0);
-    });
-  };
-
-  const getAllFiltersAsSearchParams = () => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-
-    filters.forEach((filter) => {
-      filter.values.forEach((value, index) => {
-        const paramKey = `attr[${encodeURIComponent(
-          filter.brandName.split(" ").join("_")
-        )}][${index}]`;
-        newSearchParams.append(paramKey, value.valueId.toString());
-      });
-    });
-    newSearchParams.set("page", "1");
-
-    return newSearchParams;
-  };
-
-  const addFiltersToUrl = () => {
-    // {
-    //   "attr[برند-سازنده_3][0]": "167",
-    //   "attr[برند-سازنده_3][1]": "169",
-    //   "page": "1"
-    // }
-    router.push(pathName + "?" + getAllFiltersAsSearchParams());
-  };
-
-  const removeFiltersFromUrl = () => {
-    const urlParts = pathName.toString().split("?");
-    router.push(urlParts[0]);
-    setFilters([]);
-  };
-
-  const areSearchParamsEmpty = () => {
-    return searchParams.length === 0;
-  };
+  const {
+    filters,
+    addFiltersToUrl,
+    areSearchParamsEmpty,
+    deleteFromFilters,
+    existsInFilters,
+    filterItemsChangeHandler,
+    getFilterValuesTitle,
+    removeFiltersFromUrl,
+  } = useFilterManagement();
 
   const handleAccordionChange =
     (title: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -847,11 +745,10 @@ const Contents = ({
                     {/* filters */}
                     <Box>
                       {filterItems.map((filter) => (
-                        <>
-                          <Box
-                            key={filter.title.concat(Math.random().toString())}
-                            className="filter-item"
-                          >
+                        <Box
+                          key={filter.title.concat(Math.random().toString())}
+                        >
+                          <Box className="filter-item">
                             <Accordion
                               expanded={expandedAccordions[filter.title]}
                               onChange={handleAccordionChange(filter.title)}
@@ -925,7 +822,7 @@ const Contents = ({
                             </Accordion>
                           </Box>
                           <Divider variant="middle" />
-                        </>
+                        </Box>
                       ))}
                     </Box>
                   </Box>

@@ -17,18 +17,13 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import mostPapularProductsData from "@/assets/data/mostPapularProducts.json";
 import Link from "next/link";
-import {
-  FilterValueT,
-  TFilter,
-  TFilterItems,
-  TMostPapularProducts,
-} from "@/utils/types/Category";
+import { TFilterItems, TMostPapularProducts } from "@/utils/types/Category";
+import useFilterManagement from "@/hooks/useFilterManagement";
 
 const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
   const { filterItems } = props;
@@ -37,121 +32,23 @@ const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
   const mostPapularProducts: TMostPapularProducts[] = mostPapularProductsData;
   const productsPerSlide = 3;
   const totalProducts = mostPapularProducts.length;
-  const [filters, setFilters] = React.useState<TFilter[]>([]);
-  const searchParams = useSearchParams();
-  const router = useRouter();
+
   const [expandedAccordions, setExpandedAccordion] = React.useState<
     Record<string, boolean>
   >({});
 
-  const pathName = usePathname();
+  const {
+    filters,
+    addFiltersToUrl,
+    areSearchParamsEmpty,
+    deleteFromFilters,
+    existsInFilters,
+    filterItemsChangeHandler,
+    getFilterValuesTitle,
+    removeFiltersFromUrl,
+  } = useFilterManagement();
 
-  const filterItemsChangeHandler = (
-    newItem: FilterValueT & Pick<TFilter, "brandName">
-  ) => {
-    setFilters((prevFilters) => {
-      const newFilters = prevFilters.map((filter) => {
-        if (filter.brandName === newItem.brandName)
-          return {
-            ...filter,
-            values: filter.values.find((val) => val.valueId === newItem.valueId)
-              ? filter.values.filter((val) => val.valueId !== newItem.valueId)
-              : [
-                  ...filter.values,
-                  { valueTitle: newItem.valueTitle, valueId: newItem.valueId },
-                ],
-          };
-        return filter;
-      });
-
-      // Check if an object with the brand exists
-      const existingBrandIndex = newFilters.findIndex(
-        (f) => f.brandName === newItem.brandName
-      );
-
-      // check if the values is empty
-      if (existingBrandIndex === -1) {
-        return [
-          ...newFilters,
-          {
-            brandName: newItem.brandName,
-            values: [
-              {
-                valueTitle: newItem.valueTitle,
-                valueId: newItem.valueId,
-              },
-            ],
-          },
-        ];
-      }
-
-      return newFilters.filter((f) => f.values.length > 0);
-    });
-  };
-
-  const existsInFilters = (targetValue: string, targetBrandName: string) => {
-    if (!filters || !Array.isArray(filters)) return;
-    for (const filter of filters) {
-      if (filter.brandName === targetBrandName) {
-        return filter.values.some((val) => val.valueTitle === targetValue);
-      }
-    }
-    return false;
-  };
-
-  const getFilterValuesTitle = (): string[] | undefined => {
-    if (!filters || !Array.isArray(filters)) return;
-    const data: string[] = [];
-    filters.forEach((f) => f.values.forEach((v) => data.push(v.valueTitle)));
-    return data;
-  };
-
-  const deleteFromFilters = (valueTitle: string) => {
-    setFilters((prevFilters) => {
-      const updatedFilters = prevFilters.map((f) => ({
-        ...f,
-        values: f.values.filter((v) => v.valueTitle !== valueTitle),
-      }));
-      return updatedFilters.filter((f) => f.values.length > 0);
-    });
-  };
-
-  const getAllFiltersAsSearchParams = () => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-
-    filters.forEach((filter) => {
-      filter.values.forEach((value, index) => {
-        const paramKey = `attr[${encodeURIComponent(
-          filter.brandName.split(" ").join("_")
-        )}][${index}]`;
-        newSearchParams.append(paramKey, value.valueId.toString());
-      });
-    });
-    newSearchParams.set("page", "1");
-
-    return newSearchParams;
-  };
-
-  const addFiltersToUrl = () => {
-    // {
-    //   "attr[برند-سازنده_3][0]": "167",
-    //   "attr[برند-سازنده_3][1]": "169",
-    //   "page": "1"
-    // }
-    router.push(pathName + "?" + getAllFiltersAsSearchParams());
-  };
-
-  const removeFiltersFromUrl = () => {
-    const urlParts = pathName.toString().split("?");
-    router.push(urlParts[0]);
-    setFilters([]);
-  };
-
-  const areSearchParamsEmpty = () => {
-    return searchParams.size === 0;
-  };
-
-  const handleAccordionChange =
+  const handleFilterAccordionChange =
     (title: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpandedAccordion((prevState) => ({
         ...prevState,
@@ -256,6 +153,7 @@ const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
                   display="flex"
                   flexWrap="wrap"
                   p="5px"
+                  mt="5px"
                   gap="10px"
                   dir="rtl"
                 >
@@ -294,7 +192,7 @@ const FiltersSideBar = (props: { filterItems: TFilterItems }) => {
                       >
                         <Accordion
                           expanded={expandedAccordions[filter.title]}
-                          onChange={handleAccordionChange(filter.title)}
+                          onChange={handleFilterAccordionChange(filter.title)}
                           dir="rtl"
                           sx={{
                             boxShadow: "none",

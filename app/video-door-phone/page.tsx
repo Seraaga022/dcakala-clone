@@ -16,6 +16,7 @@ import { TProduct } from "@/utils/types/Product";
 import { categoryPageProductsData } from "@/assets/data/categoryPageProducts";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Suspense } from "react";
 const FiltersSideBar = dynamic(
   () => import("@/components/template/Category/FiltersSideBar"),
   {
@@ -38,6 +39,7 @@ interface Props {
 }
 
 const CategoryPage = ({ params }: Props) => {
+  console.log(params);
   const urlPath: TUrlPath[] = [
     { title: "آیفون تصویری قیمت، فروش و نصب", slug: "video-door-phone" },
   ];
@@ -318,15 +320,16 @@ const CategoryPage = ({ params }: Props) => {
               <Box display="flex" gap="15px">
                 {/* content */}
                 <Box flex={1} width="70%">
-                  <Contents
-                    searchParams={params}
-                    importantProducts={importantProducts}
-                    categoryTypes={categoryTypes}
-                    chosenBrands={chosenBrands}
-                    consiceFilterOptions={consiceFilterOptions}
-                    filterItems={filterItems}
-                    categoryProducts={categoryProducts}
-                  />
+                  <Suspense fallback={<Box>the main content section</Box>}>
+                    <Contents
+                      importantProducts={importantProducts}
+                      categoryTypes={categoryTypes}
+                      chosenBrands={chosenBrands}
+                      consiceFilterOptions={consiceFilterOptions}
+                      filterItems={filterItems}
+                      categoryProducts={categoryProducts}
+                    />
+                  </Suspense>
                 </Box>
                 {/* filter sidebar */}
                 <Box
@@ -340,7 +343,11 @@ const CategoryPage = ({ params }: Props) => {
                   }}
                 >
                   <Box position="sticky" top={0} right={0}>
-                    <FiltersSideBar filterItems={filterItems} />
+                    <Suspense
+                      fallback={<Box>the filters side bar section</Box>}
+                    >
+                      <FiltersSideBar filterItems={filterItems} />
+                    </Suspense>
                   </Box>
                 </Box>
               </Box>
