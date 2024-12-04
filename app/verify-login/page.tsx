@@ -4,7 +4,7 @@ import React from "react";
 import LoginBox from "@/components/organisms/Login/LoginBox";
 import { InputChangeHandlerT } from "../login/page";
 
-const Page = () => {
+const VerifyLoginPage = () => {
   const [verifyingCode, setVerifyingCode] = React.useState<string>("");
 
   const changeHandler = (e: InputChangeHandlerT) => {
@@ -24,8 +24,8 @@ const Page = () => {
           {/* login box */}
           <LoginBox
             isVerifyingPage
-            val={verifyingCode}
-            changeHandler={changeHandler}
+            inputVal={verifyingCode}
+            inputChangeHandler={changeHandler}
           />
         </Box>
       </Box>
@@ -33,4 +33,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default VerifyLoginPage;

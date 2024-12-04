@@ -7,7 +7,7 @@ export type InputChangeHandlerT = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-const Page = () => {
+const LoginPage = () => {
   const [phoneVal, setPhoneVal] = React.useState<string>("");
 
   const changeHandler = (e: InputChangeHandlerT) => {
@@ -25,11 +25,11 @@ const Page = () => {
           alignItems="center"
         >
           {/* login box */}
-          <LoginBox val={phoneVal} changeHandler={changeHandler} />
+          <LoginBox inputVal={phoneVal} inputChangeHandler={changeHandler} />
         </Box>
       </Box>
     </Box>
   );
 };
 
-export default Page;
+export default LoginPage;

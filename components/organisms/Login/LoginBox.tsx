@@ -17,12 +17,12 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginBox = ({
-  val,
-  changeHandler,
+  inputVal,
+  inputChangeHandler,
   isVerifyingPage = false,
 }: {
-  val: string;
-  changeHandler: (input: InputChangeHandlerT) => void;
+  inputVal: string;
+  inputChangeHandler: (input: InputChangeHandlerT) => void;
   isVerifyingPage?: boolean;
 }) => {
   const router = useRouter();
@@ -115,15 +115,15 @@ const LoginBox = ({
                 type="number"
                 sx={{
                   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: val ? "#ff7900" : "#000",
+                    borderColor: inputVal ? "#ff7900" : "#000",
                   },
                   "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button ":
                     {
                       appearance: "none",
                     },
                 }}
-                value={val}
-                onChange={changeHandler}
+                value={inputVal}
+                onChange={inputChangeHandler}
               />
             </ThemeProvider>
           </Box>

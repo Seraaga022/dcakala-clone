@@ -37,7 +37,7 @@ interface Props {
   params: string;
 }
 
-const page = ({ params }: Props) => {
+const CategoryPage = ({ params }: Props) => {
   const urlPath: TUrlPath[] = [
     { title: "آیفون تصویری قیمت، فروش و نصب", slug: "video-door-phone" },
   ];
@@ -352,4 +352,4 @@ const page = ({ params }: Props) => {
   );
 };
 
-export default page;
+export default CategoryPage;

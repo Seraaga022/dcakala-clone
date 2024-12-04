@@ -13,7 +13,7 @@ interface Props {
   params: string[];
 }
 
-const page = ({ params }: Props) => {
+const RoutingHandlerPage = ({ params }: Props) => {
   const {
     urlPath,
     productDetails: {
@@ -98,4 +98,4 @@ const page = ({ params }: Props) => {
   );
 };
 
-export default page;
+export default RoutingHandlerPage;

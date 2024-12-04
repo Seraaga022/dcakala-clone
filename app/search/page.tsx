@@ -1,11 +1,12 @@
+import { Box } from "@mui/material";
 import React from "react";
 
 interface Props {
   params: { search: string };
 }
 
-const Page = ({ params: { search } }: Props) => {
-  return <div>{search}</div>;
+const SearchPage = ({ params: { search } }: Props) => {
+  return <Box>{search}</Box>;
 };
 
-export default Page;
+export default SearchPage;
