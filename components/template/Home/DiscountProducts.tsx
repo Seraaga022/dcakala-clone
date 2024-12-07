@@ -127,13 +127,16 @@ const DiscountBox = () => {
                             slidesPerView: 4,
                           },
                           1000: {
+                            spaceBetween: 25,
                             slidesPerView: 2.5,
                           },
                           700: {
+                            spaceBetween: 18,
                             slidesPerView: 2,
                           },
                           0: {
-                            slidesPerView: 1.5,
+                            spaceBetween: 10,
+                            slidesPerView: 1.7,
                           },
                         }}
                         spaceBetween={20}

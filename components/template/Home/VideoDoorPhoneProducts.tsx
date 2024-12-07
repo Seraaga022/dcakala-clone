@@ -31,7 +31,7 @@ const VideoDoorPhoneProducts = () => {
             </Button>
           </Box>
           {/* swiper */}
-          <Box height="450px">
+          <Box height={{ xs: "300px", sm: "380px", lg: "450px" }}>
             <Container
               maxWidth="lg"
               sx={{
@@ -69,14 +69,17 @@ const VideoDoorPhoneProducts = () => {
                     slidesPerView: 5,
                   },
                   1000: {
+                    spaceBetween: 25,
                     slidesPerView: 3.5,
                     enabled: true,
                   },
                   650: {
+                    spaceBetween: 18,
                     slidesPerView: 2.5,
                   },
                   0: {
-                    slidesPerView: 1.5,
+                    spaceBetween: 10,
+                    slidesPerView: 1.7,
                   },
                 }}
               >
@@ -94,20 +97,8 @@ const VideoDoorPhoneProducts = () => {
                         }}
                       />
                       <ProductCard.Image />
-                      <ProductCard.Colors
-                        sx={{
-                          "& .productCard-colors-placeholder": {
-                            minHeight: "20px",
-                          },
-                        }}
-                      />
-                      <ProductCard.FastExpress
-                        sx={{
-                          "& .productCard-fastExpress-placeholder": {
-                            minHeight: "55px",
-                          },
-                        }}
-                      />
+                      <ProductCard.Colors />
+                      <ProductCard.FastExpress />
                       <ProductCard.Title />
                       <ProductCard.Price />
                     </ProductCard>

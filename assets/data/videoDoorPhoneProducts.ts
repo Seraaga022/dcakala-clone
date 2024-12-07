@@ -7,11 +7,6 @@ export const videoDoorPhoneProductsData = [
       "https://dashboard.dcakala.com/public/images/product/taba-3070/2024/08/taba-3070-video-door-new-1_medium.webp",
     slug: "video-door-phone/taba/taba-3070.html",
     discountNumber: 8,
-    fastExpress: true,
-    colors: [
-      { title: "سیاه", value: "000" },
-      { title: "سفید", value: "fff" },
-    ],
     discountTime: 1,
   },
   {
