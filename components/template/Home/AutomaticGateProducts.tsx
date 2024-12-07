@@ -29,7 +29,7 @@ const AutomaticGateProducts = () => {
             </Button>
           </Box>
           {/* swiper */}
-          <Box height="450px">
+          <Box height={{ xs: "300px", sm: "350px", lg: "450px" }}>
             <Container
               maxWidth="lg"
               sx={{

@@ -45,7 +45,7 @@ const MostPurchased = () => {
             </Container>
           </Box>
           {/* products swiper */}
-          <Box mt="20px" height="270px">
+          <Box mt="20px" height={{ xs: "25svh", lg: "270px" }}>
             <Container
               maxWidth="lg"
               sx={{
@@ -76,7 +76,7 @@ const MostPurchased = () => {
                   prevEl: ".swiper-button-prev",
                 }}
                 breakpoints={{
-                  1150: {
+                  1250: {
                     slidesPerView: 5,
                     enabled: false,
                   },
@@ -95,35 +95,25 @@ const MostPurchased = () => {
                       product.imageSrc.concat(Math.random().toString())
                     )}
                   >
-                    <Box
-                      sx={{
-                        "@media (min-width: 1150px) and (max-width: 1350px)": {
-                          "& .must-purchased-product-image": {
-                            width: 220,
-                            height: 220,
-                          },
-                          "@media (max-width: 1100px)": {
-                            "& .must-purchased-product-image": {
-                              width: 280,
-                              height: 260,
-                            },
-                          },
-                        },
-                      }}
-                    >
-                      <Link href={product.slug}>
+                    <Link href={product.slug}>
+                      <Box
+                        sx={{
+                          position: "relative",
+                          width: { xs: "33vw", sm: "24vw", md: "210px" },
+                          height: { xs: "33vw", sm: "24vw", md: "210px" },
+                        }}
+                      >
                         <Image
                           className="must-purchased-product-image"
-                          width={250}
-                          height={250}
+                          fill
                           src={product.imageSrc}
                           alt={product.altarnative}
                           style={{
                             borderRadius: "5px",
                           }}
                         />
-                      </Link>
-                    </Box>
+                      </Box>
+                    </Link>
                   </SwiperSlide>
                 ))}
                 {/* swiper navigation buttons */}
