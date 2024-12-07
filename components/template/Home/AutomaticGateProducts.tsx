@@ -29,7 +29,7 @@ const AutomaticGateProducts = () => {
             </Button>
           </Box>
           {/* swiper */}
-          <Box height={{ xs: "300px", sm: "350px", lg: "450px" }}>
+          <Box height={{ xs: "300px", sm: "380px", lg: "450px" }}>
             <Container
               maxWidth="lg"
               sx={{
@@ -74,7 +74,7 @@ const AutomaticGateProducts = () => {
                     slidesPerView: 2.5,
                   },
                   0: {
-                    slidesPerView: 1.5,
+                    slidesPerView: 1.7,
                   },
                 }}
               >
@@ -92,20 +92,8 @@ const AutomaticGateProducts = () => {
                         }}
                       />
                       <ProductCard.Image />
-                      <ProductCard.Colors
-                        sx={{
-                          "& .productCard-colors-placeholder": {
-                            minHeight: "20px",
-                          },
-                        }}
-                      />
-                      <ProductCard.FastExpress
-                        sx={{
-                          "& .productCard-fastExpress-placeholder": {
-                            minHeight: "40px",
-                          },
-                        }}
-                      />
+                      <ProductCard.Colors />
+                      <ProductCard.FastExpress />
                       <ProductCard.Title />
                       <ProductCard.Price />
                     </ProductCard>
