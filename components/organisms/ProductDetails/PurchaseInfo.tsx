@@ -350,7 +350,7 @@ const PurchaseInfo = ({
                         <Typography
                           fontSize={{
                             xs: "4.3vw",
-                            mobile: "1.3vw",
+                            mobile: "2vw",
                             xl: "1.2em",
                           }}
                           fontWeight={700}

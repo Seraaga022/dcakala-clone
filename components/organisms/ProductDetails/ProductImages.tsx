@@ -138,7 +138,13 @@ const ProductImages = ({
         </Grid>
         {/* image swiper */}
         <Grid
-          height={{ xs: "55%", lg: "70%" }}
+          height={{
+            xs: "25%",
+            smL1_5: "30%",
+            smL3: "35%",
+            md: "55%",
+            lg: "70%",
+          }}
           size={12}
           px="10px"
           // swiper navigation styles
