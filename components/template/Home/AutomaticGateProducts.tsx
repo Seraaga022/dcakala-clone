@@ -67,13 +67,16 @@ const AutomaticGateProducts = () => {
                     slidesPerView: 5,
                   },
                   1000: {
+                    spaceBetween: 25,
                     slidesPerView: 3.5,
                     enabled: true,
                   },
                   650: {
+                    spaceBetween: 18,
                     slidesPerView: 2.5,
                   },
                   0: {
+                    spaceBetween: 10,
                     slidesPerView: 1.7,
                   },
                 }}
