@@ -35,7 +35,7 @@ const NavProfile = () => {
           <Typography
             sx={{
               color: "#212121",
-              fontSize: "12px",
+              fontSize: { xs: "1vw", lg: "12px" },
               fontFamily: vazirmatn.style.fontFamily,
             }}
           >
