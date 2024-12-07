@@ -5,7 +5,6 @@ import CustomThemeProvider from "../[... routing]/CustomThemeProvider";
 import CartNavbar from "@/components/template/Cart/CartNavbar";
 import CartFooter from "@/components/template/Cart/CartFooter";
 import { Container } from "@mui/material";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "مشخص کردن آدرس خرید",

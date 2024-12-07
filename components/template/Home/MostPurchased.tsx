@@ -45,7 +45,7 @@ const MostPurchased = () => {
             </Container>
           </Box>
           {/* products swiper */}
-          <Box mt="20px" height={{ xs: "25svh", lg: "270px" }}>
+          <Box mt="20px" height="fit-content" p="10px">
             <Container
               maxWidth="lg"
               sx={{
@@ -68,7 +68,7 @@ const MostPurchased = () => {
                   height: "100%",
                 }}
                 slidesPerView={5}
-                spaceBetween={10}
+                spaceBetween={1}
                 modules={[Navigation]}
                 className="swiper"
                 navigation={{
@@ -83,6 +83,12 @@ const MostPurchased = () => {
                   1000: {
                     slidesPerView: 3.5,
                     enabled: true,
+                  },
+                  770: {
+                    slidesPerView: 2.5,
+                  },
+                  640: {
+                    slidesPerView: 4.5,
                   },
                   0: {
                     slidesPerView: 2.5,
@@ -99,8 +105,8 @@ const MostPurchased = () => {
                       <Box
                         sx={{
                           position: "relative",
-                          width: { xs: "33vw", sm: "24vw", md: "210px" },
-                          height: { xs: "33vw", sm: "24vw", md: "210px" },
+                          width: { xs: "33vw", sm: "24vw", md: "220px" },
+                          height: { xs: "33vw", sm: "24vw", md: "220px" },
                         }}
                       >
                         <Image

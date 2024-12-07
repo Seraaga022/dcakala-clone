@@ -1,8 +1,8 @@
+import "@/app/globals.css";
 import type { Metadata } from "next";
 import { roboto, vazirmatn } from "./Fonts";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import CustomThemeProvider from "./[... routing]/CustomThemeProvider";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "dcakala clone",

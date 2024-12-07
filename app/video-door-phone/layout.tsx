@@ -3,7 +3,6 @@ import Navbar from "@/components/template/Navbar";
 import OffersNav from "@/components/template/OffersNav";
 import { Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import "@/app/globals.css";
 
 export default async function videoDoorPhonePLayout({
   children,
