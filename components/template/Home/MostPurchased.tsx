@@ -105,8 +105,16 @@ const MostPurchased = () => {
                       <Box
                         sx={{
                           position: "relative",
-                          width: { xs: "33vw", sm: "24vw", md: "220px" },
-                          height: { xs: "33vw", sm: "24vw", md: "220px" },
+                          width: {
+                            xs: "28vw",
+                            xsL3: "31vw",
+                            mobile: "25vw",
+                            smL1_5: "17vw",
+                            smL3: "30vw",
+                            md: "24vw",
+                            lg: "240px",
+                          },
+                          aspectRatio: 1 / 1,
                         }}
                       >
                         <Image
