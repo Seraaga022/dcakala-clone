@@ -1,7 +1,7 @@
 "use client";
-import { Box, Container, ThemeProvider } from "@mui/material";
-import CustomBreakPoint from "../../../theme/CustomBreakPoint";
+import { Box, Container } from "@mui/material";
 import CategoryItems from "@/components/molecules/ChosenCategories/CategoryItems";
+import getUniqueKey from "@/utils/lib/UniqueKey";
 
 const ChosenCategories = () => {
   const categories = [
@@ -41,32 +41,28 @@ const ChosenCategories = () => {
           },
         }}
       >
-        <ThemeProvider theme={CustomBreakPoint}>
-          <Box
-            flexWrap={{ xs: "wrap", md: "nowrap" }}
-            display="flex"
-            gap={{
-              xs: 1,
-              xsL3: 3,
-              sm: 6,
-              mobile: 8,
-              smL2: 5,
-              lg: 6,
-            }}
-            justifyContent="center"
-            dir="rtl"
-          >
-            {categories.map((item) => (
-              <CategoryItems
-                key={item.text.concat(
-                  item.imageSrc.concat(Math.random().toString())
-                )}
-                imageSrc={item.imageSrc}
-                text={item.text}
-              />
-            ))}
-          </Box>
-        </ThemeProvider>
+        <Box
+          flexWrap={{ xs: "wrap", md: "nowrap" }}
+          display="flex"
+          gap={{
+            xs: 5,
+            xsL3: 3,
+            sm: 6,
+            mobile: 8,
+            smL2: 5,
+            lg: 6,
+          }}
+          justifyContent="center"
+          dir="rtl"
+        >
+          {categories.map((item) => (
+            <CategoryItems
+              key={getUniqueKey()}
+              imageSrc={item.imageSrc}
+              text={item.text}
+            />
+          ))}
+        </Box>
       </Container>
     </Box>
   );
