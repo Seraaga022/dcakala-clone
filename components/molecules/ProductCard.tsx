@@ -319,7 +319,7 @@ const FastExpress = (props: BoxProps) => {
               sx={{
                 fontFamily: vazirmatn.style.fontFamily,
                 color: "#fff",
-                fontSize: "13px",
+                fontSize: { xs: "11px", sm: "13px" },
               }}
             >
               ارسال سریع
@@ -508,21 +508,29 @@ const PriceAndDiscount = (props: BoxProps) => {
         ) : (
           <Box
             display="flex"
+            gap="10px"
             width="100%"
             justifyContent="space-between"
             color="#009688"
             fontFamily={vazirmatn.style.fontFamily}
+            className="productCard-noPrice_wrapper"
           >
             {/* icon */}
-            <Box display="flex" justifyContent="center" alignItems="center">
+            <Box
+              className="productCard-noPrice-icon"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
               <LocalPhoneRounded />
             </Box>
             {/* text */}
             <Box
+              className="productCard-noPrice-text"
               display="flex"
               justifyContent="center"
               alignItems="center"
-              fontSize="15px"
+              fontSize={{ xs: "12px", sm: "15px" }}
               fontWeight={700}
             >
               تماس بگیرید

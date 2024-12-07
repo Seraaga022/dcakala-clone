@@ -83,12 +83,13 @@ const CategoryTypesCard = ({ type }: CategoryTypesCardT) => {
             justifyContent="center"
             alignItems="center"
           >
-            <Image
-              src={type.image}
-              alt="category-type-image"
-              width={150}
-              height={150}
-            />
+            <Box
+              position="relative"
+              width={{ xs: "120px", mobile: "150px" }}
+              height={{ xs: "120px", mobile: "150px" }}
+            >
+              <Image src={type.image} alt="category-type-image" fill />
+            </Box>
           </Box>
           {/* title & below border */}
           <Box
@@ -361,7 +362,7 @@ const Contents = ({
         <Box
           position="absolute"
           top="-60px"
-          height="120px"
+          height={{ xs: "110px", md: "120px" }}
           width="78%"
           bgcolor="#fff"
           borderRadius="99999px"
@@ -380,7 +381,7 @@ const Contents = ({
       <Box mt="120px" display="flex" flexDirection="column" alignItems="end">
         {/* title */}
         <Box
-          width={{ xs: "33%", md: "22%" }}
+          width={{ xs: "55vw", mobile: "22%" }}
           bgcolor="rgb(164 164 164/1)"
           p="10px"
           boxSizing="border-box"
@@ -396,30 +397,28 @@ const Contents = ({
           {categoryTypes.title}
         </Box>
         {/* content */}
-        <ThemeProvider theme={CustomBreakPoint}>
-          <Box
-            p="20px"
-            boxSizing="border-box"
-            dir="rtl"
-            width="100%"
-            border="1px solid #a4a4a4"
-            borderRadius="7px"
-            sx={{
-              borderStartStartRadius: 0,
-            }}
-          >
-            <Grid container spacing={{ xs: 0.5, mobile: 4 }}>
-              {categoryTypes.items.map((type) => (
-                <Grid
-                  key={type.slug.concat(type.image)}
-                  size={{ xs: 6, mobile: 4, lg: 3 }}
-                >
-                  <CategoryTypesCard key={getUniqueKey()} type={type} />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        </ThemeProvider>
+        <Box
+          p="20px"
+          boxSizing="border-box"
+          dir="rtl"
+          width="100%"
+          border="1px solid #a4a4a4"
+          borderRadius="7px"
+          sx={{
+            borderStartStartRadius: 0,
+          }}
+        >
+          <Grid container spacing={{ xs: 0.5, mobile: 4 }}>
+            {categoryTypes.items.map((type) => (
+              <Grid
+                key={type.slug.concat(type.image)}
+                size={{ xs: 6, mobile: 4, lg: 3 }}
+              >
+                <CategoryTypesCard key={getUniqueKey()} type={type} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Box>
       {/* chosen brands */}
       <Box mt="20px">
@@ -542,450 +541,442 @@ const Contents = ({
       <Box mt="45px">
         <Stack>
           {/* toolbox */}
-          <ThemeProvider theme={CustomBreakPoint}>
+          <Box
+            display="flex"
+            justifyContent={{ xs: "space-between", mobile: "end" }}
+            gap="15px"
+            dir="ltr"
+          >
+            {/* products feed layout buttons & laptop filters */}
             <Box
+              flex={1}
+              order={{ xs: 2, mobile: 1 }}
               display="flex"
               justifyContent={{ xs: "space-between", mobile: "end" }}
-              gap="15px"
-              dir="ltr"
+              alignItems="center"
             >
-              {/* products feed layout buttons & laptop filters */}
+              {/* filter trigger */}
               <Box
-                flex={1}
                 order={{ xs: 2, mobile: 1 }}
-                display="flex"
-                justifyContent={{ xs: "space-between", mobile: "end" }}
-                alignItems="center"
-              >
-                {/* filter trigger */}
-                <Box
-                  order={{ xs: 2, mobile: 1 }}
-                  display={{ xs: "block", lg: "none" }}
-                  color="inherit"
-                  className="laptop-filters"
-                  onClick={() => setFiltersDrawerOpen(true)}
-                  dir="ltr"
-                  sx={{
-                    pl: "15px",
-                    py: "2px",
-                    textTransform: "none",
-                    boxSizing: "border-box",
-                    border: "1px solid #d7d7d7",
-                    borderRadius: "7px",
-                    bgcolor: "#fff",
-                  }}
-                >
-                  <Stack spacing={1} direction="row" alignItems="center">
-                    {/* text */}
-                    <Typography
-                      fontFamily={vazirmatn.style.fontFamily}
-                      fontSize=".9em"
-                    >
-                      فیلترها
-                    </Typography>
-                    {/* icon */}
-                    <Box display="flex" alignItems="end">
-                      <IconButton onClick={() => setFiltersDrawerOpen(true)}>
-                        <Tune />
-                      </IconButton>
-                    </Box>
-                  </Stack>
-                </Box>
-                {/* filter drawer */}
-                <Drawer
-                  sx={{
-                    "& .MuiPaper-root": {
-                      bgcolor: "#f8f8f8",
-                      overflow: "visible",
-                    },
-                  }}
-                  anchor="bottom"
-                  open={isFiltersDrawerOpen}
-                  onClose={() => setFiltersDrawerOpen(false)}
-                >
-                  <Box
-                    width="100%"
-                    height="100svh"
-                    sx={{
-                      overflowY: "scroll",
-                      position: "relative",
-                    }}
-                    dir="rtl"
-                  >
-                    {/* header */}
-                    <Box
-                      dir="ltr"
-                      bgcolor="#fff"
-                      borderBottom="1px solid #e5e7eb"
-                      p="10px"
-                      zIndex={1000}
-                      position="sticky"
-                    >
-                      <Stack>
-                        {/* application buttons */}
-                        <Box
-                          width="100%"
-                          display="flex"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Box>
-                            <Stack direction="row" spacing={1}>
-                              {/* apply filters */}
-                              <Box>
-                                <Button
-                                  onClick={addFiltersToUrl}
-                                  fullWidth
-                                  color="warning"
-                                  disabled={filters.length > 0 ? false : true}
-                                  sx={{
-                                    bgcolor: "#ff7900",
-                                    color: "#fff",
-                                    fontFamily: vazirmatn.style.fontFamily,
-                                    fontWeight: 300,
-                                    textTransform: "none",
-                                    px: "13px",
-                                    "&.Mui-disabled": {
-                                      bgcolor: "#a4a4a4",
-                                      color: "#fff",
-                                    },
-                                    "&:hover": {
-                                      boxShadow: 3,
-                                      animationDuration: "1000ms",
-                                    },
-                                  }}
-                                >
-                                  اعمال فیلتر
-                                </Button>
-                              </Box>
-                              {/* remove filters */}
-                              <Box>
-                                <Button
-                                  onClick={removeFiltersFromUrl}
-                                  fullWidth
-                                  color="error"
-                                  sx={{
-                                    display: areSearchParamsEmpty()
-                                      ? "none"
-                                      : "block",
-                                    bgcolor: "#ff0000",
-                                    color: "#fff",
-                                    fontFamily: vazirmatn.style.fontFamily,
-                                    fontWeight: 300,
-                                    textTransform: "none",
-                                    px: "13px",
-                                    "&:hover": {
-                                      boxShadow: 3,
-                                      animationDuration: "1000ms",
-                                    },
-                                  }}
-                                >
-                                  حذف فیلتر
-                                </Button>
-                              </Box>
-                            </Stack>
-                          </Box>
-                          {/* close */}
-                          <Box>
-                            <IconButton
-                              onClick={() => setFiltersDrawerOpen(false)}
-                            >
-                              <Clear />
-                            </IconButton>
-                          </Box>
-                        </Box>
-                        {/* selected filters */}
-                        <Box
-                          maxHeight="104px"
-                          display={filters.length > 0 ? "flex" : "none"}
-                          flexDirection="column"
-                          p="5px"
-                          mt="10px"
-                          gap="8px"
-                          dir="rtl"
-                          sx={{
-                            overflowY: "scroll",
-                          }}
-                        >
-                          {getFilterValuesTitle()?.map((filterValue) => (
-                            <Box
-                              key={filterValue}
-                              dir="rtl"
-                              height="30px"
-                              bgcolor="#f1f1f1"
-                              borderRadius="5px"
-                              py="7px"
-                              px="10px"
-                              display="flex"
-                              alignItems="center"
-                              justifyContent="space-between"
-                              fontFamily={vazirmatn.style.fontFamily}
-                            >
-                              {/* text */}
-                              <Box
-                                fontSize="12px"
-                                fontWeight={300}
-                                color="#000"
-                              >
-                                {filterValue}
-                              </Box>
-                              {/* close button */}
-                              <Box>
-                                <IconButton
-                                  onClick={() => deleteFromFilters(filterValue)}
-                                >
-                                  <Clear sx={{ fontSize: "20px" }} />
-                                </IconButton>
-                              </Box>
-                            </Box>
-                          ))}
-                        </Box>
-                      </Stack>
-                    </Box>
-                    {/* filters */}
-                    <Box>
-                      {filterItems.map((filter) => (
-                        <Box
-                          key={filter.title.concat(Math.random().toString())}
-                        >
-                          <Box className="filter-item">
-                            <Accordion
-                              expanded={expandedAccordions[filter.title]}
-                              onChange={handleAccordionChange(filter.title)}
-                              dir="rtl"
-                              sx={{
-                                boxShadow: "none",
-                                "--Paper-shadow": "none",
-                              }}
-                            >
-                              <AccordionSummary
-                                expandIcon={<ExpandMore />}
-                                aria-controls="filters-accordion-content"
-                                id="filters-accordion-header"
-                              >
-                                <Box>
-                                  <Typography
-                                    fontFamily={vazirmatn.style.fontFamily}
-                                    fontSize="14px"
-                                  >
-                                    {filter.title}
-                                  </Typography>
-                                </Box>
-                              </AccordionSummary>
-                              <AccordionDetails>
-                                <Stack className="filter-children-wrapper">
-                                  {filter.items.map((subItem) => (
-                                    <Box
-                                      key={subItem.title.concat(
-                                        Math.random().toString()
-                                      )}
-                                    >
-                                      <FormControlLabel
-                                        control={
-                                          <Checkbox
-                                            checked={existsInFilters(
-                                              subItem.title,
-                                              filter.title
-                                            )}
-                                            name={subItem.title}
-                                            id={subItem.title.concat(
-                                              subItem.id.toString()
-                                            )}
-                                            size="small"
-                                            color="warning"
-                                            onChange={() =>
-                                              filterItemsChangeHandler({
-                                                valueTitle: subItem.title,
-                                                valueId: subItem.id,
-                                                brandName: filter.title,
-                                              })
-                                            }
-                                            sx={{
-                                              "&.MuiCheckbox-root": { pr: 0 },
-                                            }}
-                                          />
-                                        }
-                                        label={subItem.title}
-                                        labelPlacement="end"
-                                        sx={{
-                                          "& .MuiFormControlLabel-label": {
-                                            fontFamily:
-                                              vazirmatn.style.fontFamily,
-                                            fontSize: "13px",
-                                          },
-                                        }}
-                                      />
-                                    </Box>
-                                  ))}
-                                </Stack>
-                              </AccordionDetails>
-                            </Accordion>
-                          </Box>
-                          <Divider variant="middle" />
-                        </Box>
-                      ))}
-                    </Box>
-                  </Box>
-                </Drawer>
-                {/* products feed layout buttons */}
-                <ButtonGroup
-                  variant="outlined"
-                  color="info"
-                  dir="ltr"
-                  sx={{
-                    order: { xs: 1, mobile: 2 },
-                  }}
-                >
-                  {/* block layout button */}
-                  <Box>
-                    <Button
-                      color="inherit"
-                      className="block"
-                      onClick={() => setProductsFeedLayout("block")}
-                      sx={{
-                        minWidth: "10px",
-                        p: 0,
-                        m: 0,
-                        py: "10px",
-                        border: "1px solid #d7d7d7",
-                        bgcolor:
-                          productsFeedLayout === "block" ? "#ebebeb" : "#fff",
-                        "&:hover": {
-                          bgcolor:
-                            productsFeedLayout === "block"
-                              ? "#e0e0e0"
-                              : "#f5f5f5",
-                        },
-                      }}
-                    >
-                      <ViewList
-                        sx={{
-                          color:
-                            productsFeedLayout === "block" ? "#000" : "#707070",
-                        }}
-                      />
-                    </Button>
-                  </Box>
-                  {/* grid layout button */}
-                  <Box>
-                    <Button
-                      color="inherit"
-                      className="grid"
-                      onClick={() => setProductsFeedLayout("grid")}
-                      sx={{
-                        minWidth: "10px",
-                        p: 0,
-                        m: 0,
-                        py: "10px",
-                        border: "1px solid #d7d7d7",
-                        bgcolor:
-                          productsFeedLayout === "grid" ? "#ebebeb" : "#fff",
-                        "&:hover": {
-                          bgcolor:
-                            productsFeedLayout === "grid"
-                              ? "#e0e0e0"
-                              : "#f5f5f5",
-                        },
-                      }}
-                    >
-                      <ViewModule
-                        sx={{
-                          color:
-                            productsFeedLayout === "grid" ? "#000" : "#707070",
-                        }}
-                      />
-                    </Button>
-                  </Box>
-                </ButtonGroup>
-              </Box>
-              {/* consice filtering drop down */}
-              <Box
-                flex={{ xs: 0.9, mobile: 0.28, smL3: 0.2 }}
-                order={{ xs: 1, mobile: 2 }}
-                display={{ xs: "none", sm: "flex" }}
-                justifyContent={{ xs: "start", mobile: "end" }}
+                display={{ xs: "block", lg: "none" }}
+                color="inherit"
+                className="laptop-filters"
+                onClick={() => setFiltersDrawerOpen(true)}
+                dir="ltr"
                 sx={{
-                  "& .MuiInputLabel-formControl": {
-                    fontFamily: vazirmatn.style.fontFamily,
-                    right: "-40px",
-                  },
-                  "& .MuiInput-input": {
-                    fontFamily: vazirmatn.style.fontFamily,
-                  },
-                  "& .MuiSelect-icon": {
-                    position: "relative",
-                  },
+                  pl: "15px",
+                  py: "2px",
+                  textTransform: "none",
+                  boxSizing: "border-box",
+                  border: "1px solid #d7d7d7",
+                  borderRadius: "7px",
+                  bgcolor: "#fff",
                 }}
               >
-                <Box
-                  component="form"
-                  sx={{
-                    "& .MuiTextField-root": {
-                      width: { xs: "18.5ch", mobile: "19ch" },
-                    },
-                  }}
-                  autoComplete="off"
-                >
-                  <TextField
-                    label="نمایش براساس"
-                    select
-                    defaultValue={consiceFilterOptions[0]}
-                    dir="rtl"
-                    color="warning"
-                    variant="standard"
+                <Stack spacing={1} direction="row" alignItems="center">
+                  {/* text */}
+                  <Typography
+                    fontFamily={vazirmatn.style.fontFamily}
+                    fontSize=".9em"
                   >
-                    {/* options menu */}
-                    {consiceFilterOptions.map((option) => (
-                      <MenuItem
-                        key={getUniqueKey()}
-                        dir="rtl"
-                        value={option}
-                        id={option}
+                    فیلترها
+                  </Typography>
+                  {/* icon */}
+                  <Box display="flex" alignItems="end">
+                    <IconButton onClick={() => setFiltersDrawerOpen(true)}>
+                      <Tune />
+                    </IconButton>
+                  </Box>
+                </Stack>
+              </Box>
+              {/* filter drawer */}
+              <Drawer
+                sx={{
+                  "& .MuiPaper-root": {
+                    bgcolor: "#f8f8f8",
+                    overflow: "visible",
+                  },
+                }}
+                anchor="bottom"
+                open={isFiltersDrawerOpen}
+                onClose={() => setFiltersDrawerOpen(false)}
+              >
+                <Box
+                  width="100%"
+                  height="100svh"
+                  sx={{
+                    overflowY: "scroll",
+                    position: "relative",
+                  }}
+                  dir="rtl"
+                >
+                  {/* header */}
+                  <Box
+                    dir="ltr"
+                    bgcolor="#fff"
+                    borderBottom="1px solid #e5e7eb"
+                    p="10px"
+                    zIndex={1000}
+                    position="sticky"
+                  >
+                    <Stack>
+                      {/* application buttons */}
+                      <Box
+                        width="100%"
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
                       >
-                        <Typography
-                          fontFamily={vazirmatn.style.fontFamily}
-                          fontSize="14px"
-                        >
-                          {option}
-                        </Typography>
-                      </MenuItem>
+                        <Box>
+                          <Stack direction="row" spacing={1}>
+                            {/* apply filters */}
+                            <Box>
+                              <Button
+                                onClick={addFiltersToUrl}
+                                fullWidth
+                                color="warning"
+                                disabled={filters.length > 0 ? false : true}
+                                sx={{
+                                  bgcolor: "#ff7900",
+                                  color: "#fff",
+                                  fontFamily: vazirmatn.style.fontFamily,
+                                  fontWeight: 300,
+                                  textTransform: "none",
+                                  px: "13px",
+                                  "&.Mui-disabled": {
+                                    bgcolor: "#a4a4a4",
+                                    color: "#fff",
+                                  },
+                                  "&:hover": {
+                                    boxShadow: 3,
+                                    animationDuration: "1000ms",
+                                  },
+                                }}
+                              >
+                                اعمال فیلتر
+                              </Button>
+                            </Box>
+                            {/* remove filters */}
+                            <Box>
+                              <Button
+                                onClick={removeFiltersFromUrl}
+                                fullWidth
+                                color="error"
+                                sx={{
+                                  display: areSearchParamsEmpty()
+                                    ? "none"
+                                    : "block",
+                                  bgcolor: "#ff0000",
+                                  color: "#fff",
+                                  fontFamily: vazirmatn.style.fontFamily,
+                                  fontWeight: 300,
+                                  textTransform: "none",
+                                  px: "13px",
+                                  "&:hover": {
+                                    boxShadow: 3,
+                                    animationDuration: "1000ms",
+                                  },
+                                }}
+                              >
+                                حذف فیلتر
+                              </Button>
+                            </Box>
+                          </Stack>
+                        </Box>
+                        {/* close */}
+                        <Box>
+                          <IconButton
+                            onClick={() => setFiltersDrawerOpen(false)}
+                          >
+                            <Clear />
+                          </IconButton>
+                        </Box>
+                      </Box>
+                      {/* selected filters */}
+                      <Box
+                        maxHeight="104px"
+                        display={filters.length > 0 ? "flex" : "none"}
+                        flexDirection="column"
+                        p="5px"
+                        mt="10px"
+                        gap="8px"
+                        dir="rtl"
+                        sx={{
+                          overflowY: "scroll",
+                        }}
+                      >
+                        {getFilterValuesTitle()?.map((filterValue) => (
+                          <Box
+                            key={filterValue}
+                            dir="rtl"
+                            height="30px"
+                            bgcolor="#f1f1f1"
+                            borderRadius="5px"
+                            py="7px"
+                            px="10px"
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="space-between"
+                            fontFamily={vazirmatn.style.fontFamily}
+                          >
+                            {/* text */}
+                            <Box fontSize="12px" fontWeight={300} color="#000">
+                              {filterValue}
+                            </Box>
+                            {/* close button */}
+                            <Box>
+                              <IconButton
+                                onClick={() => deleteFromFilters(filterValue)}
+                              >
+                                <Clear sx={{ fontSize: "20px" }} />
+                              </IconButton>
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
+                    </Stack>
+                  </Box>
+                  {/* filters */}
+                  <Box>
+                    {filterItems.map((filter) => (
+                      <Box key={getUniqueKey()}>
+                        <Box className="filter-item">
+                          <Accordion
+                            expanded={expandedAccordions[filter.title]}
+                            onChange={handleAccordionChange(filter.title)}
+                            dir="rtl"
+                            sx={{
+                              boxShadow: "none",
+                              "--Paper-shadow": "none",
+                            }}
+                          >
+                            <AccordionSummary
+                              expandIcon={<ExpandMore />}
+                              aria-controls="filters-accordion-content"
+                              id="filters-accordion-header"
+                            >
+                              <Box>
+                                <Typography
+                                  fontFamily={vazirmatn.style.fontFamily}
+                                  fontSize="14px"
+                                >
+                                  {filter.title}
+                                </Typography>
+                              </Box>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Stack className="filter-children-wrapper">
+                                {filter.items.map((subItem) => (
+                                  <Box
+                                    key={subItem.title.concat(
+                                      Math.random().toString()
+                                    )}
+                                  >
+                                    <FormControlLabel
+                                      control={
+                                        <Checkbox
+                                          checked={existsInFilters(
+                                            subItem.title,
+                                            filter.title
+                                          )}
+                                          name={subItem.title}
+                                          id={subItem.title.concat(
+                                            subItem.id.toString()
+                                          )}
+                                          size="small"
+                                          color="warning"
+                                          onChange={() =>
+                                            filterItemsChangeHandler({
+                                              valueTitle: subItem.title,
+                                              valueId: subItem.id,
+                                              brandName: filter.title,
+                                            })
+                                          }
+                                          sx={{
+                                            "&.MuiCheckbox-root": { pr: 0 },
+                                          }}
+                                        />
+                                      }
+                                      label={subItem.title}
+                                      labelPlacement="end"
+                                      sx={{
+                                        "& .MuiFormControlLabel-label": {
+                                          fontFamily:
+                                            vazirmatn.style.fontFamily,
+                                          fontSize: "13px",
+                                        },
+                                      }}
+                                    />
+                                  </Box>
+                                ))}
+                              </Stack>
+                            </AccordionDetails>
+                          </Accordion>
+                        </Box>
+                        <Divider variant="middle" />
+                      </Box>
                     ))}
-                  </TextField>
+                  </Box>
                 </Box>
+              </Drawer>
+              {/* products feed layout buttons */}
+              <ButtonGroup
+                variant="outlined"
+                color="info"
+                dir="ltr"
+                sx={{
+                  order: { xs: 1, mobile: 2 },
+                }}
+              >
+                {/* block layout button */}
+                <Box>
+                  <Button
+                    color="inherit"
+                    className="block"
+                    onClick={() => setProductsFeedLayout("block")}
+                    sx={{
+                      minWidth: "10px",
+                      p: 0,
+                      m: 0,
+                      py: "10px",
+                      border: "1px solid #d7d7d7",
+                      bgcolor:
+                        productsFeedLayout === "block" ? "#ebebeb" : "#fff",
+                      "&:hover": {
+                        bgcolor:
+                          productsFeedLayout === "block"
+                            ? "#e0e0e0"
+                            : "#f5f5f5",
+                      },
+                    }}
+                  >
+                    <ViewList
+                      sx={{
+                        color:
+                          productsFeedLayout === "block" ? "#000" : "#707070",
+                      }}
+                    />
+                  </Button>
+                </Box>
+                {/* grid layout button */}
+                <Box>
+                  <Button
+                    color="inherit"
+                    className="grid"
+                    onClick={() => setProductsFeedLayout("grid")}
+                    sx={{
+                      minWidth: "10px",
+                      p: 0,
+                      m: 0,
+                      py: "10px",
+                      border: "1px solid #d7d7d7",
+                      bgcolor:
+                        productsFeedLayout === "grid" ? "#ebebeb" : "#fff",
+                      "&:hover": {
+                        bgcolor:
+                          productsFeedLayout === "grid" ? "#e0e0e0" : "#f5f5f5",
+                      },
+                    }}
+                  >
+                    <ViewModule
+                      sx={{
+                        color:
+                          productsFeedLayout === "grid" ? "#000" : "#707070",
+                      }}
+                    />
+                  </Button>
+                </Box>
+              </ButtonGroup>
+            </Box>
+            {/* consice filtering drop down */}
+            <Box
+              flex={{ xs: 0.9, mobile: 0.28, smL3: 0.2 }}
+              order={{ xs: 1, mobile: 2 }}
+              display={{ xs: "none", sm: "flex" }}
+              justifyContent={{ xs: "start", mobile: "end" }}
+              sx={{
+                "& .MuiInputLabel-formControl": {
+                  fontFamily: vazirmatn.style.fontFamily,
+                  right: "-40px",
+                },
+                "& .MuiInput-input": {
+                  fontFamily: vazirmatn.style.fontFamily,
+                },
+                "& .MuiSelect-icon": {
+                  position: "relative",
+                },
+              }}
+            >
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": {
+                    width: { xs: "18.5ch", mobile: "19ch" },
+                  },
+                }}
+                autoComplete="off"
+              >
+                <TextField
+                  label="نمایش براساس"
+                  select
+                  defaultValue={consiceFilterOptions[0]}
+                  dir="rtl"
+                  color="warning"
+                  variant="standard"
+                >
+                  {/* options menu */}
+                  {consiceFilterOptions.map((option) => (
+                    <MenuItem
+                      key={getUniqueKey()}
+                      dir="rtl"
+                      value={option}
+                      id={option}
+                    >
+                      <Typography
+                        fontFamily={vazirmatn.style.fontFamily}
+                        fontSize="14px"
+                      >
+                        {option}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Box>
             </Box>
-          </ThemeProvider>
+          </Box>
           {/* products */}
           <Box mt="20px">
             <Box className="_wrapper_" dir="rtl">
-              <ThemeProvider theme={CustomBreakPoint}>
-                <Grid container spacing={1}>
-                  {categoryProducts.map((p) => (
-                    <Grid
-                      key={getUniqueKey()}
-                      size={
+              <Grid container spacing={1}>
+                {categoryProducts.map((p) => (
+                  <Grid
+                    key={getUniqueKey()}
+                    size={
+                      productsFeedLayout === "grid"
+                        ? { xs: 6, sm: 4, md: 3 }
+                        : 12
+                    }
+                  >
+                    <ProductCard
+                      layout={productsFeedLayout}
+                      product={p}
+                      minHeight={
                         productsFeedLayout === "grid"
-                          ? { xs: 6, sm: 4, md: 3 }
-                          : 12
+                          ? { xs: "430px", md: "480px" }
+                          : "200px"
                       }
-                    >
-                      <ProductCard
-                        layout={productsFeedLayout}
-                        product={p}
-                        minHeight={
-                          productsFeedLayout === "grid" ? "480px" : "200px"
-                        }
-                        sx={{
-                          "@media (max-width: 640px)": {
-                            "&:hover": {
-                              boxShadow: "none",
-                            },
-                            border: "none",
-                            borderRadius: "0",
-                            borderBottom: "1px solid #e4e6ea",
+                      sx={{
+                        "@media (max-width: 640px)": {
+                          "&:hover": {
+                            boxShadow: "none",
                           },
-                        }}
-                      >
+                          border: "none",
+                          borderRadius: "0",
+                          borderBottom: "1px solid #e4e6ea",
+                        },
+                      }}
+                    >
+                      <Grid container pt="30px" size={12}>
                         <ProductCard.TopDetails
                           sx={{
                             "&.productCard-timer_container": {
@@ -994,105 +985,167 @@ const Contents = ({
                             },
                           }}
                         />
-                        <ProductCard.Image
-                          flex={0.2}
-                          sx={{
-                            "@media (max-width: 650px)": {
-                              "& .productCard-video , & .productCard-image": {
-                                width:
-                                  productsFeedLayout === "grid"
-                                    ? "130px"
-                                    : "auto",
-                                height:
-                                  productsFeedLayout === "grid"
-                                    ? "130px"
-                                    : "auto",
-                              },
-                            },
-                            "@media (max-width: 600px)": {
-                              "& .productCard-video , & .productCard-image": {
-                                width:
-                                  productsFeedLayout === "grid"
-                                    ? "auto"
-                                    : "100px",
-                                height:
-                                  productsFeedLayout === "grid"
-                                    ? "auto"
-                                    : "100px",
-                              },
-                            },
-                            "@media (max-width: 500px)": {
-                              "& .productCard-video , & .productCard-image": {
-                                width:
-                                  productsFeedLayout === "grid"
-                                    ? "auto"
-                                    : "50px",
-                                height:
-                                  productsFeedLayout === "grid"
-                                    ? "auto"
-                                    : "50px",
-                              },
-                            },
-                          }}
-                        />
-                        {/* color & fast express & title & price container */}
-                        <Stack
-                          flex={0.9}
-                          direction={
-                            productsFeedLayout === "grid" ? "column" : "row"
+                        {/* image */}
+                        <Grid
+                          size={
+                            productsFeedLayout === "block"
+                              ? { xs: 5.5, md: 2.6 }
+                              : 12
                           }
-                          alignItems="center"
-                          justifyContent="start"
                         >
-                          {/* colors and fast express and title container */}
-                          <Stack
-                            direction="column"
-                            justifyContent="center"
-                            flex={1}
-                          >
-                            {/* colors and fast express container */}
-                            <Stack
-                              order={productsFeedLayout === "grid" ? 1 : 2}
-                              justifyContent={
+                          <ProductCard.Image
+                            sx={{
+                              "@media (max-width: 650px)": {
+                                "& .productCard-video , & .productCard-image": {
+                                  width:
+                                    productsFeedLayout === "grid"
+                                      ? "130px"
+                                      : "auto",
+                                  height:
+                                    productsFeedLayout === "grid"
+                                      ? "130px"
+                                      : "auto",
+                                },
+                              },
+                              "@media (max-width: 600px)": {
+                                "& .productCard-video , & .productCard-image": {
+                                  width:
+                                    productsFeedLayout === "grid"
+                                      ? "auto"
+                                      : "100px",
+                                  height:
+                                    productsFeedLayout === "grid"
+                                      ? "auto"
+                                      : "100px",
+                                },
+                              },
+                              "@media (max-width: 500px)": {
+                                "& .productCard-video , & .productCard-image": {
+                                  width:
+                                    productsFeedLayout === "grid"
+                                      ? "auto"
+                                      : "35vw",
+                                  height:
+                                    productsFeedLayout === "grid"
+                                      ? "auto"
+                                      : "35vw",
+                                },
+                              },
+                            }}
+                          />
+                        </Grid>
+                        {/* title & fast express & price */}
+                        <Grid
+                          size={
+                            productsFeedLayout === "block"
+                              ? { xs: 6.5, md: 4.5 }
+                              : 12
+                          }
+                        >
+                          <Stack>
+                            <ProductCard.Title
+                              order={
                                 productsFeedLayout === "grid"
-                                  ? "space-between"
-                                  : "start"
+                                  ? { xs: 2, mobile: 1 }
+                                  : "unset"
                               }
-                              mt={
-                                productsFeedLayout === "grid" ? "70px" : "20px"
-                              }
+                              mt="5px"
+                            />
+                            <Stack
                               direction={
                                 productsFeedLayout === "grid" ? "row" : "column"
                               }
                             >
+                              {/* DESKTOP colors */}
                               <ProductCard.Colors
+                                order={
+                                  productsFeedLayout === "grid"
+                                    ? { xs: 1, mobile: 2 }
+                                    : "unset"
+                                }
+                                display={
+                                  productsFeedLayout === "block"
+                                    ? { xs: "none", md: "block" }
+                                    : "block"
+                                }
+                                mt={{ xs: "5px", md: "15px" }}
                                 sx={{
                                   "& .productCard-colors-placeholder": {
                                     minHeight:
                                       productsFeedLayout === "grid"
-                                        ? "55px"
+                                        ? "30px"
                                         : 0,
                                   },
                                 }}
                               />
-                              <ProductCard.FastExpress />
+                              <ProductCard.FastExpress
+                                order={
+                                  productsFeedLayout === "grid"
+                                    ? { xs: 3, mobile: 2 }
+                                    : "unset"
+                                }
+                                mt="10px"
+                              />
                             </Stack>
-                            <ProductCard.Title
-                              order={productsFeedLayout === "grid" ? 2 : 1}
+                            {/* video door features SECTION */}
+                            <ProductCard.Price
+                              display={
+                                productsFeedLayout === "block"
+                                  ? { xs: "block", md: "none" }
+                                  : "unset"
+                              }
                             />
                           </Stack>
-                          {/* price */}
+                        </Grid>
+                        {/* Desktop price */}
+                        <Grid
+                          size={4.9}
+                          display={
+                            productsFeedLayout === "block"
+                              ? { xs: "none", md: "block" }
+                              : "none"
+                          }
+                        >
                           <ProductCard.Price
-                            order={3}
-                            flex={0.3}
-                            overflow="visible"
+                            minHeight="100%"
+                            justifyContent="start"
+                            sx={{
+                              "& .productCard-price_wrapper": {
+                                mr: "20px",
+                                flex: "unset",
+                              },
+                              "& .productCard-price-discount_wrapper": {
+                                justifyContent: "start",
+                              },
+                              "& .productCard-noPrice_wrapper": {
+                                justifyContent: "start",
+                              },
+                            }}
                           />
-                        </Stack>
-                      </ProductCard>
-                    </Grid>
-                  ))}
-                </Grid>
-              </ThemeProvider>
+                        </Grid>
+                        {/* MOBILE colors */}
+                        <Grid
+                          size={12}
+                          display={
+                            productsFeedLayout === "block"
+                              ? { xs: "block", md: "none" }
+                              : "none"
+                          }
+                        >
+                          <ProductCard.Colors
+                            sx={{
+                              "& .productCard-colors-placeholder": {
+                                minHeight:
+                                  productsFeedLayout === "grid" ? "55px" : 0,
+                              },
+                            }}
+                          />
+                        </Grid>
+                      </Grid>
+                    </ProductCard>
+                  </Grid>
+                ))}
+              </Grid>
             </Box>
           </Box>
         </Stack>

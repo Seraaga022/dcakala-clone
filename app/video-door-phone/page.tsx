@@ -294,7 +294,11 @@ const CategoryPage = ({ params }: Props) => {
           {/* breadCrumbs */}
           <BreadCrumbs urlPath={urlPath} />
           {/* content */}
-          <Box display="flex" flexDirection="column" mt="30px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            mt={{ xs: "15px", md: "30px" }}
+          >
             {/* page title */}
             <Box>
               <Box mr="25px" dir="rtl" fontSize="16.5px" fontWeight={700}>
