@@ -7,7 +7,7 @@
 //     name: 'Cart',
 //     initialState,
 //     reducers: {
-//         // addToCart: (state, action: PayloadAction<>) {
+//         // addToCart: (state, action: PayloadAction<TCart>) {
 //         //     // return
 //         // }
 //     }
