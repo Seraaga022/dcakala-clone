@@ -1023,12 +1023,12 @@ const Contents = ({
                                 "& .productCard-video , & .productCard-image": {
                                   width:
                                     productsFeedLayout === "grid"
-                                      ? "auto"
+                                      ? "40vw"
                                       : "35vw",
                                   height:
                                     productsFeedLayout === "grid"
                                       ? "auto"
-                                      : "35vw",
+                                      : "40vw",
                                 },
                               },
                             }}
