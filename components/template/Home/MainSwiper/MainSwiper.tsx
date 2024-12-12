@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Box } from "@mui/material";
-import styles from "@/assets/css/mainSwiper.module.css";
+import styles from "./mainSwiper.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
