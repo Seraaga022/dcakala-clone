@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
-const BreadCrumbs = (props: { urlPath: TUrlPath[] }) => {
+const Breadcrumbs = (props: { urlPath: TUrlPath[] }) => {
   const { urlPath } = props;
   const currentPage = urlPath[urlPath.length - 1];
 
@@ -71,4 +71,4 @@ const BreadCrumbs = (props: { urlPath: TUrlPath[] }) => {
   );
 };
 
-export default BreadCrumbs;
+export default Breadcrumbs;

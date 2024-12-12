@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "@/components/template/Navbar";
 import { Box, Skeleton } from "@mui/material";
 import OffersNav from "@/components/template/OffersNav";
-import MainSwiper from "@/components/template/Home/MainSwiper";
+import MainSwiper from "@/components/template/Home/MainSwiper/MainSwiper";
 import MainCategories from "@/components/template/Home/MainCategories";
 import DiscountBox from "@/components/template/Home/DiscountProducts";
 import CategoriesGridFeed from "@/components/template/Home/CategoriesGridFeed";

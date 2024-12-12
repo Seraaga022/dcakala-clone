@@ -11,7 +11,7 @@ import {
   TFilterItems,
   TUrlPath,
 } from "@/utils/types/Category";
-import BreadCrumbs from "@/components/molecules/BreadCrumbs";
+import Breadcrumbs from "@/components/molecules/Breadcrumbs";
 import { TProduct } from "@/utils/types/Product";
 import { categoryPageProductsData } from "@/assets/data/categoryPageProducts";
 import "swiper/css";
@@ -292,7 +292,7 @@ const CategoryPage = ({ params }: Props) => {
       >
         <Box className={vazirmatn.className}>
           {/* breadCrumbs */}
-          <BreadCrumbs urlPath={urlPath} />
+          <Breadcrumbs urlPath={urlPath} />
           {/* content */}
           <Box
             display="flex"

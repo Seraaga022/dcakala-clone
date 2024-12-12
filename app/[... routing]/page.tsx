@@ -2,7 +2,7 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
 import { vazirmatn } from "../Fonts";
-import BreadCrumbs from "@/components/molecules/BreadCrumbs";
+import Breadcrumbs from "@/components/molecules/Breadcrumbs";
 import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
 import { productDetailsData } from "@/assets/data/productDetailsPageContent";
 import { TProductDetailPageContent } from "@/utils/types/ProductDetails";
@@ -56,7 +56,7 @@ const RoutingHandlerPage = ({ params }: Props) => {
       >
         <Box className={vazirmatn.className}>
           {/* breadCrumbs */}
-          <BreadCrumbs urlPath={urlPath} />
+          <Breadcrumbs urlPath={urlPath} />
           {/* divider */}
           <Box mt="20px" mb="25px">
             <PageDivider
