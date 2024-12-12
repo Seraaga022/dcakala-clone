@@ -45,7 +45,8 @@ const FilterItemAccordion = ({
     };
 
   return (
-    <motion.div
+    <Box
+      component={motion.div}
       layout
       animate={{ opacity: 1 }}
       initial={{ opacity: 1 }}
@@ -53,7 +54,8 @@ const FilterItemAccordion = ({
     >
       <AnimatePresence>
         {
-          <motion.div
+          <Box
+            component={motion.div}
             layout
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,10 +123,10 @@ const FilterItemAccordion = ({
                 </Stack>
               </AccordionDetails>
             </Accordion>
-          </motion.div>
+          </Box>
         }
       </AnimatePresence>
-    </motion.div>
+    </Box>
   );
 };
 
