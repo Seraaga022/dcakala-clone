@@ -434,7 +434,7 @@ const PriceAndDiscount = (props: BoxProps) => {
                   fontSize="16px"
                 >
                   {discountNumber
-                    ? (price / discountNumber - price).toLocaleString()
+                    ? (price - (price * discountNumber) / 100).toLocaleString()
                     : price.toLocaleString()}
                   &nbsp;
                 </Typography>
