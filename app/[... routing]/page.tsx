@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/material";
 import React from "react";
 import { vazirmatn } from "../Fonts";
 import Breadcrumbs from "@/components/molecules/Breadcrumbs";
-import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
+import PageDivider from "@/components/atoms/Home/PageDivider";
 import { productDetailsData } from "@/assets/data/productDetailsPageContent";
 import { TProductDetailPageContent } from "@/utils/types/ProductDetails";
 import PageBody from "@/components/template/ProductDetails/PageBody";

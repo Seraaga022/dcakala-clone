@@ -7,7 +7,7 @@ import MainSwiper from "@/components/template/Home/MainSwiper/MainSwiper";
 import MainCategories from "@/components/template/Home/MainCategories";
 import DiscountBox from "@/components/template/Home/DiscountProducts";
 import CategoriesGridFeed from "@/components/template/Home/CategoriesGridFeed";
-import PageDivider from "@/components/atoms/Home/PageDividerWithContent";
+import PageDivider from "@/components/atoms/Home/PageDivider";
 import VideoDoorPhoneProducts from "@/components/template/Home/VideoDoorPhoneProducts";
 import ChosenBrands from "@/components/template/Home/ChosenBrands";
 import CctvCategories from "@/components/template/Home/CctvCategories";
