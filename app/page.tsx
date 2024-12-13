@@ -1,26 +1,26 @@
 "use server";
 import React from "react";
-import Navbar from "@/components/template/Navbar";
+import Navbar from "@/components/templates/Navbar";
 import { Box, Skeleton } from "@mui/material";
-import OffersNav from "@/components/template/OffersNav";
-import MainSwiper from "@/components/template/Home/MainSwiper/MainSwiper";
-import MainCategories from "@/components/template/Home/MainCategories";
-import DiscountBox from "@/components/template/Home/DiscountProducts";
-import CategoriesGridFeed from "@/components/template/Home/CategoriesGridFeed";
+import OffersNav from "@/components/templates/OffersNav";
+import MainSwiper from "@/components/templates/Home/MainSwiper/MainSwiper";
+import MainCategories from "@/components/templates/Home/MainCategories";
+import DiscountBox from "@/components/templates/Home/DiscountProducts";
+import CategoriesGridFeed from "@/components/templates/Home/CategoriesGridFeed";
 import PageDivider from "@/components/atoms/PageDivider";
-import VideoDoorPhoneProducts from "@/components/template/Home/VideoDoorPhoneProducts";
-import ChosenBrands from "@/components/template/Home/ChosenBrands";
-import CctvCategories from "@/components/template/Home/CctvCategories";
-import ChosenCategories from "@/components/template/Home/ChosenCategories";
-import AutomaticGateProducts from "@/components/template/Home/AutomaticGateProducts";
+import VideoDoorPhoneProducts from "@/components/templates/Home/VideoDoorPhoneProducts";
+import ChosenBrands from "@/components/templates/Home/ChosenBrands";
+import CctvCategories from "@/components/templates/Home/CctvCategories";
+import ChosenCategories from "@/components/templates/Home/ChosenCategories";
+import AutomaticGateProducts from "@/components/templates/Home/AutomaticGateProducts";
 import chosenVideoDoorBrands from "@/assets/data/chosenVideoDoorPhoneBrands.json";
 import chosenAutomaticGateBrands from "@/assets/data/chosenAutomaticGateBrands.json";
-import MostPurchased from "@/components/template/Home/MostPurchased";
-import RollingShuttersProducts from "@/components/template/Home/RollingShuttersProducts";
-import NewProducts from "@/components/template/Home/NewProducts";
-import WebsiteIntroduction from "@/components/template/Home/WebsiteIntroduction";
+import MostPurchased from "@/components/templates/Home/MostPurchased";
+import RollingShuttersProducts from "@/components/templates/Home/RollingShuttersProducts";
+import NewProducts from "@/components/templates/Home/NewProducts";
+import WebsiteIntroduction from "@/components/templates/Home/WebsiteIntroduction";
 import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("@/components/template/Footer"), {
+const Footer = dynamic(() => import("@/components/templates/Footer"), {
   ssr: false,
   loading: () => (
     <Box>

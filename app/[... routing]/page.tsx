@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/molecules/Breadcrumbs";
 import PageDivider from "@/components/atoms/PageDivider";
 import { productDetailsData } from "@/assets/data/productDetailsPageContent";
 import { TProductDetailPageContent } from "@/utils/types/ProductDetails";
-import PageBody from "@/components/template/ProductDetails/PageBody";
+import PageBody from "@/components/templates/ProductDetails/PageBody";
 import { ProductColorT } from "@/utils/types/Product";
 
 interface Props {

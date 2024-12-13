@@ -2,8 +2,8 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Metadata } from "next";
 import React from "react";
 import CustomThemeProvider from "../[... routing]/CustomThemeProvider";
-import CartNavbar from "@/components/template/Cart/CartNavbar";
-import CartFooter from "@/components/template/Cart/CartFooter";
+import CartNavbar from "@/components/templates/Cart/CartNavbar";
+import CartFooter from "@/components/templates/Cart/CartFooter";
 import { Container } from "@mui/material";
 
 export const metadata: Metadata = {

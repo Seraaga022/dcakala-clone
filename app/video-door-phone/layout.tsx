@@ -1,6 +1,6 @@
-import Footer from "@/components/template/Footer";
-import Navbar from "@/components/template/Navbar";
-import OffersNav from "@/components/template/OffersNav";
+import Footer from "@/components/templates/Footer";
+import Navbar from "@/components/templates/Navbar";
+import OffersNav from "@/components/templates/OffersNav";
 import { Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 

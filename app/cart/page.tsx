@@ -1,5 +1,5 @@
 "use server";
-import Cart from "@/components/page/Cart";
+import Cart from "@/components/pages/Cart";
 import React from "react";
 
 const CartPage = () => {

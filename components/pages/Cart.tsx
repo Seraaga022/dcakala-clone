@@ -4,7 +4,7 @@ import React from "react";
 import ProductsSection, {
   TabsT as CartTabsT,
 } from "../organisms/Cart/ProductsSection";
-import CartLayout from "../template/Cart/CartLayout";
+import CartLayout from "../templates/Cart/CartLayout";
 
 const Cart = () => {
   const { data: cart } = useCart();

@@ -3,7 +3,7 @@ import PageDivider from "@/components/atoms/PageDivider";
 import { Box, Container, Skeleton } from "@mui/material";
 import { vazirmatn } from "../Fonts";
 import dynamic from "next/dynamic";
-import Contents from "@/components/template/Category/Contents";
+import Contents from "@/components/templates/Category/Contents";
 import {
   TCategoryChosenBrands,
   TCategoryImportantProducts,
@@ -18,7 +18,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Suspense } from "react";
 const FiltersSideBar = dynamic(
-  () => import("@/components/template/Category/FiltersSideBar"),
+  () => import("@/components/templates/Category/FiltersSideBar"),
   {
     ssr: false,
     loading: () => (
