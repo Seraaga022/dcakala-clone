@@ -1,5 +1,5 @@
 "use server";
-import PageDivider from "@/components/atoms/Home/PageDivider";
+import PageDivider from "@/components/atoms/PageDivider";
 import { Box, Container, Skeleton } from "@mui/material";
 import { vazirmatn } from "../Fonts";
 import dynamic from "next/dynamic";
